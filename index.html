@@ -3,133 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTÜ Uluslararası Ticaret Araştırma Topluluğu</title>
+    <title>BTÜ UTAT | Uluslararası Ticaret Araştırma Topluluğu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --dark-navy: #1a365d; /* Logodaki koyu lacivert */
-            --light-blue: #5bc0de; /* Logodaki açık mavi/turkuaz */
+            --dark-navy: #1a365d;
+            --light-blue: #5bc0de;
+            --accent-blue: #0056b3;
             --white: #ffffff;
-            --gray: #f8f9fa;
+            --gray: #f4f7f6;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
+
+        /* Yumuşak Giriş Animasyonu */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal { animation: fadeInUp 0.8s ease-out forwards; }
 
         /* Navigation */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 1.5rem 8%; background: white; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 1000;
+            padding: 1rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
+            transition: var(--transition);
         }
-        .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-area img { height: 60px; }
-        .logo-text-nav { font-weight: 700; font-size: 1rem; color: var(--dark-navy); line-height: 1.1; }
-        .logo-text-nav span { color: var(--light-blue); display: block; font-size: 0.8rem; font-weight: 400; }
+        .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-area img { height: 65px; transition: var(--transition); }
+        .logo-area:hover img { transform: rotate(-5deg) scale(1.05); }
+        .logo-text-nav { font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); line-height: 1.2; }
+        .logo-text-nav span { display: block; color: var(--light-blue); font-size: 0.85rem; font-weight: 400; }
 
-        .nav-links { list-style: none; display: flex; }
-        .nav-links li { margin-left: 25px; }
-        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--light-blue); }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; padding-bottom: 5px; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background: var(--light-blue); transition: var(--transition); }
+        .nav-links a:hover::after { width: 100%; }
 
         /* Hero Section */
         header { 
-            height: 70vh; display: flex; flex-direction: column; justify-content: center; 
+            height: 85vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
-            background: linear-gradient(135deg, var(--dark-navy) 0%, #001f3f 100%);
-            color: white; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(0, 31, 63, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1521791136064-7986c2923216?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-attachment: fixed; color: white; position: relative;
         }
-        header::after {
-            content: ''; position: absolute; width: 200%; height: 200%;
-            background: url('https://www.transparenttextures.com/patterns/world-map.png');
-            opacity: 0.1; pointer-events: none;
-        }
-        header h1 { font-size: 3.5rem; margin-bottom: 1rem; z-index: 1; }
-        header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2rem; z-index: 1; }
+        header h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -1px; }
+        header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2.5rem; opacity: 0.9; }
         
-        /* Buton Grupları */
-        .header-btns { z-index: 1; display: flex; gap: 20px; }
-        .btn-hero { text-decoration: none; padding: 15px 35px; border-radius: 5px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-primary { background: var(--light-blue); color: white; }
-        .btn-primary:hover { background: white; color: var(--dark-navy); transform: scale(1.05); }
+        .header-btns { display: flex; gap: 20px; }
+        .btn { text-decoration: none; padding: 16px 40px; border-radius: 50px; font-weight: 700; transition: var(--transition); border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+        .btn-primary { background: var(--light-blue); color: white; box-shadow: 0 10px 20px rgba(91, 192, 222, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(91, 192, 222, 0.4); background: white; color: var(--dark-navy); }
         .btn-outline { border: 2px solid white; color: white; background: transparent; }
-        .btn-outline:hover { background: white; color: var(--dark-navy); }
+        .btn-outline:hover { background: white; color: var(--dark-navy); transform: translateY(-3px); }
 
-        /* Sections */
-        section { padding: 80px 10%; }
-        .section-title { color: var(--dark-navy); font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--light-blue); margin: 10px auto; }
+        /* Section Styling */
+        section { padding: 100px 12%; }
+        .section-title { color: var(--dark-navy); font-size: 2.5rem; margin-bottom: 50px; text-align: center; font-weight: 700; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 5px; background: var(--light-blue); margin: 15px auto; border-radius: 10px; }
 
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        /* Service Cards */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .service-card { 
-            background: var(--gray); padding: 40px; border-radius: 15px; 
-            transition: 0.3s; border-left: 8px solid var(--dark-navy);
+            background: white; padding: 50px 40px; border-radius: 25px; 
+            transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); position: relative; overflow: hidden;
         }
-        .service-card:hover { transform: translateY(-5px); background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-left-color: var(--light-blue); }
-        .service-card i { font-size: 2.5rem; color: var(--light-blue); margin-bottom: 20px; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--dark-navy); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .service-card:hover::before { background: var(--light-blue); }
+        .service-card i { font-size: 3rem; color: var(--light-blue); margin-bottom: 25px; display: block; }
+
+        /* Etkinlikler */
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .event-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); transition: var(--transition); }
+        .event-card:hover { transform: scale(1.02); }
+        .event-img { width: 100%; height: 220px; background: linear-gradient(45deg, var(--dark-navy), var(--accent-blue)); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; }
+        .event-content { padding: 30px; }
 
         /* Üye Ol Bölümü */
-        .join-section { background: var(--gray); text-align: center; border-radius: 20px; padding: 60px 20px; margin: 40px 0; }
-        .btn-join { display: inline-block; background: var(--dark-navy); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
-        .btn-join:hover { background: var(--light-blue); transform: scale(1.05); }
+        .join-container { background: linear-gradient(135deg, var(--gray) 0%, #e9ecef 100%); border-radius: 30px; padding: 80px 40px; text-align: center; }
 
         /* Ekip Bölümü */
-        .unit-title { background: var(--dark-navy); color: white; padding: 10px 25px; border-radius: 5px; display: inline-block; margin: 40px 0 25px; font-weight: 600; }
-        .grid-team { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
-        .team-card { background: var(--gray); padding: 25px 15px; border-radius: 15px; text-align: center; transition: 0.3s; }
-        .team-card:hover { background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .profile-img { width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 15px; border: 3px solid var(--light-blue); overflow: hidden; }
+        .unit-group { margin-bottom: 80px; }
+        .unit-title { background: var(--dark-navy); color: white; padding: 12px 30px; border-radius: 50px; display: inline-block; margin-bottom: 40px; font-weight: 600; font-size: 1rem; letter-spacing: 1px; }
+        .grid-team { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 35px; }
+        .team-card { background: white; padding: 40px 20px; border-radius: 25px; text-align: center; transition: var(--transition); box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; border: 4px solid var(--gray); overflow: hidden; transition: var(--transition); }
+        .team-card:hover .profile-img { border-color: var(--light-blue); }
         .profile-img img { width: 100%; height: 100%; object-fit: cover; }
-        .team-card h3 { font-size: 1rem; margin-bottom: 5px; }
-        .team-card p { font-size: 0.8rem; color: #666; font-weight: 600; text-transform: uppercase; }
 
         /* Footer */
-        footer { background: var(--dark-navy); color: white; padding: 60px 10% 20px; text-align: center; }
-        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
-        .footer-logo span { color: var(--light-blue); }
-        .social { margin: 25px 0; }
-        .social a { color: white; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
-        .social a:hover { color: var(--light-blue); }
-        .footer-mail { display: block; margin-top: 15px; color: var(--light-blue); text-decoration: none; font-weight: 600; }
+        footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
+        .footer-logo { font-size: 2rem; font-weight: 700; margin-bottom: 30px; }
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+        .social-links a { color: white; font-size: 2rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--light-blue); transform: translateY(-5px); }
+        .footer-mail { color: var(--light-blue); text-decoration: none; font-size: 1.2rem; font-weight: 600; border-bottom: 2px solid transparent; transition: var(--transition); }
+        .footer-mail:hover { border-bottom-color: var(--light-blue); }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2.2rem; }
-            .header-btns { flex-direction: column; width: 100%; }
+            header h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .logo-text-nav { font-size: 0.8rem; }
+            section { padding: 60px 8%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-area">
+        <a href="#" class="logo-area">
             <img src="logo.png" alt="BTÜ UTAT">
             <div class="logo-text-nav">
                 ULUSLARARASI TİCARET
                 <span>ARAŞTIRMA TOPLULUĞU</span>
             </div>
-        </div>
+        </a>
         <ul class="nav-links">
             <li><a href="#hakkimizda">Kurumsal</a></li>
-            <li><a href="#uye-ol">Üye Ol</a></li>
+            <li><a href="#etkinlikler">Etkinlikler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
             <li><a href="#iletisim">İletişim</a></li>
         </ul>
     </nav>
 
-    <header>
-        <div style="z-index: 1; opacity: 0.9; font-size: 1rem; letter-spacing: 2px; margin-bottom: 10px;">BURSA TEKNİK ÜNİVERSİTESİ</div>
+    <header class="reveal">
+        <div style="opacity: 0.8; font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 15px; font-weight: 300;">BURSA TEKNİK ÜNİVERSİTESİ</div>
         <h1>BTÜ UTAT</h1>
         <p>"Ticaretin Rotasını Çiziyoruz"</p>
         <div class="header-btns">
-            <a href="#hakkimizda" class="btn-hero btn-primary">Kurumsal Bakış</a>
-            <a href="#uye-ol" class="btn-hero btn-outline">Üye Ol</a>
+            <a href="#hakkimizda" class="btn btn-primary">Keşfet</a>
+            <a href="#uye-ol" class="btn btn-outline">Aramıza Katıl</a>
         </div>
     </header>
 
-    <section id="hakkimizda">
+    <section id="hakkimizda" class="reveal">
         <h2 class="section-title">Neler Hedefliyoruz?</h2>
         <div class="services">
             <div class="service-card">
@@ -150,65 +166,72 @@
         </div>
     </section>
 
-    <section id="uye-ol" style="padding: 40px 10%;">
-        <div class="join-section">
-            <h2 class="section-title">Üye ol</h2>
-            <p style="margin-bottom: 30px;">Geleceğin ticaret dünyasında yerini almak için hemen başvurunu yap!</p>
-            <a href="https://forms.gle/XXXXX" target="_blank" class="btn-join">Başvuru Formuna Git</a>
+    <section id="etkinlikler" style="background-color: var(--gray);" class="reveal">
+        <h2 class="section-title">Etkinlikler & Duyurular</h2>
+        <div class="event-grid">
+            <div class="event-card">
+                <div class="event-img"><i class="fab fa-linkedin"></i></div>
+                <div class="event-content">
+                    <h3 style="color:var(--light-blue); font-size: 0.9rem; margin-bottom: 10px;">EĞİTİM</h3>
+                    <h3>LinkedIn Semineri</h3>
+                    <p>Dijital dünyada profesyonel profil oluşturma ve ağ kurma üzerine detaylı bir eğitim.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-img" style="background: linear-gradient(45deg, #2c3e50, #000000);"><i class="fas fa-truck-loading"></i></div>
+                <div class="event-content">
+                    <h3 style="color:var(--light-blue); font-size: 0.9rem; margin-bottom: 10px;">TEKNİK GEZİ</h3>
+                    <h3>Lojistik Merkezi Ziyareti</h3>
+                    <p>Bursa'nın dev üretim tesislerinde tedarik zinciri yönetimini yerinde gördük.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="ekip" style="background-color: #fbfbfb; text-align: center;">
-        <h2 class="section-title">Üniversitenin En Havalı Yönetim Kurulu</h2>
+    <section id="uye-ol" class="reveal">
+        <div class="join-container">
+            <h2 class="section-title">Yeni Maceralara Hazır mısın?</h2>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; color: #555;">Geleceğin ticaret liderleri arasında yerini al. BTÜ UTAT seni bekliyor!</p>
+            <a href="FORM_LINKI_BURAYA" target="_blank" class="btn btn-primary" style="padding: 20px 60px;">ŞİMDİ ÜYE OL</a>
+        </div>
+    </section>
 
-        <div class="unit-title">TOPLULUK BAŞKANI</div>
-        <div style="max-width: 250px; margin: 0 auto 50px;">
-            <div class="team-card">
-                <div class="profile-img"><img src="melih.png" alt="Melih AYDOĞAN"></div>
-                <h3>Melih AYDOĞAN</h3>
-                <p>KİNG REGARDS</p>
+    <section id="ekip" style="text-align: center;" class="reveal">
+        <h2 class="section-title">Yönetim ve Birimler</h2>
+        
+        <div class="unit-group">
+            <div class="unit-title">TOPLULUK BAŞKANI</div>
+            <div style="max-width: 280px; margin: 0 auto;">
+                <div class="team-card">
+                    <div class="profile-img"><img src="melih.png" alt="Melih AYDOĞAN"></div>
+                    <h3>Melih AYDOĞAN</h3>
+                    <p style="color:var(--light-blue); font-weight: 700;">KİNG REGARDS</p>
+                </div>
             </div>
         </div>
 
-        <div class="unit-title">ETKİNLİK VE ORGANİZASYON BİRİMİ</div>
-        <div class="grid-team">
-            <div class="team-card"><div class="profile-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
-            <div class="team-card"><div class="profile-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Üye</p></div>
-            <div class="team-card"><div class="profile-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Üye</p></div>
-            <div class="team-card"><div class="profile-img"><img src="sude.png"></div><h3>Sude GENÇ</h3><p>Üye</p></div>
-            <div class="team-card"><div class="profile-img"><img src="sinem.png"></div><h3>Sinem AKYILDIZ</h3><p>Üye</p></div>
-        </div>
-
-        <div class="unit-title">DIŞ İLİŞKİLER BİRİMİ</div>
-        <div class="grid-team">
-            <div class="team-card"><div class="profile-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
-            <div class="team-card"><div class="profile-img"><img src="diana.png"></div><h3>Diana SECHERLI</h3><p>Üye</p></div>
-            <div class="team-card"><div class="profile-img"><img src="eymen.png"></div><h3>Eymen KURT</h3><p>Üye</p></div>
-        </div>
-
-        <div class="unit-title">BASIN VE MEDYA BİRİMİ</div>
-        <div class="grid-team">
-            <div class="team-card"><div class="profile-img"><img src="helen.png"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
-            <div class="team-card"><div class="profile-img"><img src="izem.png"></div><h3>İzem ÇETİN</h3><p>Üye</p></div>
-        </div>
-
-        <div class="unit-title">SPONSORLUK BİRİMİ</div>
-        <div class="grid-team">
-            <div class="team-card"><div class="profile-img"><img src="yaren.png"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
-            <div class="team-card"><div class="profile-img"><img src="rumeysa.png"></div><h3>Rümeysa TEMÜR</h3><p>Üye</p></div>
+        <div class="unit-group">
+            <div class="unit-title">YÖNETİM KURULU</div>
+            <div class="grid-team">
+                <div class="team-card"><div class="profile-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+                <div class="team-card"><div class="profile-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Üye</p></div>
+                <div class="team-card"><div class="profile-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Üye</p></div>
+                <div class="team-card"><div class="profile-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+            </div>
         </div>
     </section>
 
     <footer id="iletisim">
         <div class="footer-logo">BTÜ <span>UTAT</span></div>
-        <p>Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırma Topluluğu</p>
-        <div class="social">
+        <div class="social-links">
             <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
+        <p style="margin-bottom: 15px; opacity: 0.7;">Bize her zaman ulaşabilirsiniz:</p>
         <a href="mailto:btuutat@gmail.com" class="footer-mail">btuutat@gmail.com</a>
-        <hr style="opacity: 0.1; margin: 20px 0;">
-        <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 btuutat.com.tr - Tüm Hakları Saklıdır.</p>
+        <div style="margin-top: 50px; font-size: 0.85rem; opacity: 0.5;">
+            <p>© 2026 btuutat.com.tr - Tüm Hakları Saklıdır.</p>
+        </div>
     </footer>
 
 </body>
