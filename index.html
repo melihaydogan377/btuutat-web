@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTÜ UTAT | Uluslararası Ticaret Araştırma Topluluğu</title>
+    <title>BTÜ UTAT | Uluslararası Ticaret Araştırmaları Topluluğu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -19,7 +19,6 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
 
-        /* Animasyon */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { animation: fadeInUp 0.8s ease-out forwards; }
 
@@ -30,7 +29,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
         }
         .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-area img { height: 60px; }
+        .logo-area img { height: 60px; transition: var(--transition); }
         .logo-text-nav { font-weight: 700; font-size: 1rem; color: var(--dark-navy); line-height: 1.1; }
         .logo-text-nav span { display: block; color: var(--light-blue); font-size: 0.8rem; font-weight: 400; }
 
@@ -46,34 +45,49 @@
             background-size: cover; background-attachment: fixed; color: white;
         }
         header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
-        header p { font-style: italic; font-size: 1.5rem; color: var(--light-blue); margin-bottom: 2.5rem; }
-        .btn-hero { text-decoration: none; padding: 15px 35px; border-radius: 5px; font-weight: bold; transition: var(--transition); background: var(--light-blue); color: white; border: none; cursor: pointer; }
-        .btn-hero:hover { transform: translateY(-3px); background: white; color: var(--dark-navy); }
+        header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2.5rem; }
+        .header-btns { z-index: 1; display: flex; gap: 20px; }
+        .btn { text-decoration: none; padding: 15px 35px; border-radius: 5px; font-weight: bold; transition: var(--transition); border: none; cursor: pointer; }
+        .btn-primary { background: var(--light-blue); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); background: white; color: var(--dark-navy); }
+        .btn-outline { border: 2px solid white; color: white; background: transparent; }
+        .btn-outline:hover { background: white; color: var(--dark-navy); }
 
         /* Sections */
         section { padding: 80px 10%; }
         .section-title { color: var(--dark-navy); font-size: 2.2rem; margin-bottom: 40px; text-align: center; font-weight: 700; }
         .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--light-blue); margin: 10px auto; }
 
-        /* Etkinlikler */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: var(--gray); padding: 40px; border-radius: 15px; border-left: 8px solid var(--dark-navy); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-5px); background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-left-color: var(--light-blue); }
+        .service-card i { font-size: 2.5rem; color: var(--light-blue); margin-bottom: 20px; display: block; }
+
+        /* Haber Kartları */
         .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .event-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid #eee; }
-        .event-card:hover { transform: translateY(-5px); }
         .event-img { width: 100%; height: 200px; background: var(--dark-navy); display: flex; align-items: center; justify-content: center; color: white; font-size: 3.5rem; }
         .event-content { padding: 25px; }
         .read-more { display: inline-block; margin-top: 15px; color: var(--light-blue); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
-        .read-more:hover { text-decoration: underline; }
+
+        /* Üye Ol Alanı */
+        .join-section { background: var(--gray); text-align: center; border-radius: 20px; padding: 60px 20px; margin: 40px 0; }
+        .btn-join { display: inline-block; background: var(--dark-navy); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: 0.3s; }
+        .btn-join:hover { background: var(--light-blue); transform: scale(1.05); }
 
         /* Ekip */
         .unit-title { background: var(--dark-navy); color: white; padding: 10px 25px; border-radius: 5px; display: inline-block; margin: 40px 0 25px; font-weight: 600; text-transform: uppercase; }
         .grid-team { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
         .team-card { background: var(--gray); padding: 25px 15px; border-radius: 15px; text-align: center; transition: var(--transition); }
+        .team-card:hover { transform: translateY(-5px); background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .profile-img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; border: 3px solid var(--light-blue); overflow: hidden; }
         .profile-img img { width: 100%; height: 100%; object-fit: cover; }
 
         footer { background: var(--dark-navy); color: white; padding: 60px 10% 20px; text-align: center; }
         .social-links a { color: white; font-size: 1.8rem; margin: 0 15px; transition: var(--transition); }
         .footer-mail { color: var(--light-blue); text-decoration: none; font-weight: 600; display: block; margin-top: 15px; }
+
+        @media (max-width: 768px) { h1 { font-size: 2.2rem !important; } .nav-links { display: none; } .header-btns { flex-direction: column; width: 100%; } }
     </style>
 </head>
 <body>
@@ -85,7 +99,7 @@
         </a>
         <ul class="nav-links">
             <li><a href="#hakkimizda">Kurumsal</a></li>
-            <li><a href="#etkinlikler">Etkinlikler</a></li>
+            <li><a href="#etkinlikler">Haberler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
             <li><a href="#iletisim">İletişim</a></li>
         </ul>
@@ -95,15 +109,18 @@
         <div style="opacity: 0.8; letter-spacing: 3px; margin-bottom: 10px;">BURSA TEKNİK ÜNİVERSİTESİ</div>
         <h1>BTÜ UTAT</h1>
         <p>"Ticaretin Rotasını Çiziyoruz"</p>
-        <a href="#etkinlikler" class="btn-hero">Son Haberler</a>
+        <div class="header-btns">
+            <a href="#hakkimizda" class="btn btn-primary">Kurumsal Bakış</a>
+            <a href="#uye-ol" class="btn btn-outline">Üye Ol</a>
+        </div>
     </header>
 
     <section id="hakkimizda" class="reveal">
         <h2 class="section-title">Neler Hedefliyoruz?</h2>
-        <div class="services" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-            <div style="background: var(--gray); padding: 30px; border-radius: 15px;"><h3>Sektörel Vizyon</h3><p>Bursa'nın lojistik potansiyelini akademik bakışla inceliyoruz.</p></div>
-            <div style="background: var(--gray); padding: 30px; border-radius: 15px;"><h3>Eğitim</h3><p>Seminerler ve teknik gezilerle profesyonel hayata hazırlanıyoruz.</p></div>
-            <div style="background: var(--gray); padding: 30px; border-radius: 15px;"><h3>Network</h3><p>İş dünyası ve mezunlarımızla sürekli iletişim halindeyiz.</p></div>
+        <div class="services">
+            <div class="service-card"><i class="fas fa-globe-americas"></i><h3>Sektörel Vizyon</h3><p>Bursa'nın lojistik ve ticaret potansiyelini akademik bir bakışla inceliyoruz.</p></div>
+            <div class="service-card"><i class="fas fa-ship"></i><h3>Eğitim ve Kariyer</h3><p>Seminerler ve teknik gezilerle profesyone hayata hazırlanıyoruz.</p></div>
+            <div class="service-card"><i class="fas fa-handshake"></i><h3>Geniş Network</h3><p>İş dünyası ve mezunlarımızla sürekli iletişim halindeyiz.</p></div>
         </div>
     </section>
 
@@ -112,38 +129,67 @@
         <div class="event-grid">
             <div class="event-card">
                 <div class="event-img"><i class="fab fa-linkedin"></i></div>
-                <div class="event-content">
-                    <h3>LinkedIn Semineri</h3>
-                    <p>Geleceğin ticaret liderleri dijital dünyada yerini alıyor. Seminerin detayları için tıklayın.</p>
-                    <a href="haber1.html" class="read-more">Haberin Devamı →</a>
-                </div>
+                <div class="event-content"><h3>LinkedIn Semineri</h3><p>Dijital profesyonellik ve ağ kurma üzerine detaylı eğitimimiz...</p><a href="haber1.html" class="read-more">Devamını Oku →</a></div>
             </div>
             <div class="event-card">
                 <div class="event-img" style="background: #2c3e50;"><i class="fas fa-industry"></i></div>
-                <div class="event-content">
-                    <h3>Oyak Renault Gezisi</h3>
-                    <p>Oyak Renault üretim tesislerini ziyaret ederek lojistik süreçleri yerinde inceledik.</p>
-                    <a href="haber2.html" class="read-more">Haberin Devamı →</a>
-                </div>
+                <div class="event-content"><h3>Oyak Renault Gezisi</h3><p>Üretim ve lojistik süreçlerini yerinde incelediğimiz teknik gezimiz...</p><a href="haber2.html" class="read-more">Devamını Oku →</a></div>
             </div>
         </div>
     </section>
 
+    <section id="uye-ol" style="padding: 40px 10%;">
+        <div class="join-section">
+            <h2 class="section-title">Aramıza Katıl</h2>
+            <p style="margin-bottom: 30px;">Geleceğin ticaret dünyasında yerini almak için hemen başvurunu yap!</p>
+            <a href="https://forms.gle/XXXXX" target="_blank" class="btn-join">Başvuru Formuna Git</a>
+        </div>
+    </section>
+
     <section id="ekip" style="text-align: center;" class="reveal">
-        <h2 class="section-title">Yönetim Kurulu</h2>
+        <h2 class="section-title">Yönetim ve Birimler</h2>
         <div class="unit-title">TOPLULUK BAŞKANI</div>
         <div style="max-width: 250px; margin: 0 auto 50px;">
             <div class="team-card"><div class="profile-img"><img src="melih.png"></div><h3>Melih AYDOĞAN</h3><p style="color:var(--light-blue)">KİNG REGARDS</p></div>
         </div>
-        </section>
+
+        <div class="unit-title">ETKİNLİK VE ORGANİZASYON BİRİMİ</div>
+        <div class="grid-team">
+            <div class="team-card"><div class="profile-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+            <div class="team-card"><div class="profile-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Üye</p></div>
+            <div class="team-card"><div class="profile-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Üye</p></div>
+            <div class="team-card"><div class="profile-img"><img src="sude.png"></div><h3>Sude GENÇ</h3><p>Üye</p></div>
+            <div class="team-card"><div class="profile-img"><img src="sinem.png"></div><h3>Sinem AKYILDIZ</h3><p>Üye</p></div>
+        </div>
+
+        <div class="unit-title">DIŞ İLİŞKİLER BİRİMİ</div>
+        <div class="grid-team">
+            <div class="team-card"><div class="profile-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+            <div class="team-card"><div class="profile-img"><img src="diana.png"></div><h3>Diana SECHERLI</h3><p>Üye</p></div>
+            <div class="team-card"><div class="profile-img"><img src="eymen.png"></div><h3>Eymen KURT</h3><p>Üye</p></div>
+        </div>
+
+        <div class="unit-title">BASIN VE MEDYA BİRİMİ</div>
+        <div class="grid-team">
+            <div class="team-card"><div class="profile-img"><img src="helen.png"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
+            <div class="team-card"><div class="profile-img"><img src="izem.png"></div><h3>İzem ÇETİN</h3><p>Üye</p></div>
+        </div>
+
+        <div class="unit-title">SPONSORLUK BİRİMİ</div>
+        <div class="grid-team">
+            <div class="team-card"><div class="profile-img"><img src="yaren.png"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
+            <div class="team-card"><div class="profile-img"><img src="rumeysa.png"></div><h3>Rümeysa TEMÜR</h3><p>Üye</p></div>
+        </div>
+    </section>
 
     <footer id="iletisim">
+        <div class="footer-logo">BTÜ <span>UTAT</span></div>
         <div class="social-links">
             <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
         <a href="mailto:btuutat@gmail.com" class="footer-mail">btuutat@gmail.com</a>
-        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">© 2026 btuutat.com.tr - Tüm Hakları Saklıdır.</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">© 2026 btuutat.com.tr - Tüm Hakları Saklıdır.</p>
     </footer>
 
 </body>
