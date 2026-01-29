@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTÜ UTAT | Uluslararası Ticaret Araştırmaları Topluluğu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -19,11 +19,9 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
 
-        /* Yumuşak Giriş Animasyonu */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { animation: fadeInUp 0.8s ease forwards; }
 
-        /* Modern Glassmorphism Navigasyon */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 1rem 8%; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -33,11 +31,12 @@
         .logo-area img { height: 70px; } 
         
         .logo-text-nav { 
-            font-weight: 700; 
-            font-size: 1.5rem; 
-            line-height: 1; 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            line-height: 0.9; 
             text-transform: uppercase; 
-            letter-spacing: -0.5px; 
+            letter-spacing: -1px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -46,40 +45,61 @@
             display: block; 
             color: var(--utat-blue); 
             font-weight: 600; 
-            font-size: 0.9rem; 
-            letter-spacing: 1.5px;
-            margin-top: 3px;
+            font-size: 0.85rem; 
+            letter-spacing: 2px;
+            margin-top: 4px;
         }
 
         .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; transition: var(--transition); }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; transition: var(--transition); font-size: 0.9rem; letter-spacing: 0.5px; }
         .nav-links a:hover { color: var(--utat-blue); }
         
-        /* Sağ Üst Üye Ol Butonu */
         .nav-join-btn {
             background: var(--utat-blue);
             color: white !important;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: var(--transition);
         }
         .nav-join-btn:hover { background: var(--dark-navy); transform: scale(1.05); }
 
-        /* Rich Hero Section */
         header { 
             height: 75vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 58, 138, 0.8) 100%), url('https://images.unsplash.com/photo-1454165833767-02a214d0237b?auto=format&fit=crop&w=1950&q=80');
             background-size: cover; background-attachment: fixed; color: white; position: relative;
         }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        header p { font-size: 1.6rem; color: var(--utat-blue); font-weight: 300; letter-spacing: 3px; font-style: italic; }
+        header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); letter-spacing: -2px; }
+        header p { font-family: 'Lora', serif; font-size: 1.8rem; color: var(--utat-blue); font-weight: 400; letter-spacing: 2px; font-style: italic; }
 
-        /* Kaydırmalı Haberler Bölümü */
+        /* HABERLER OKLARI İÇİN CSS */
         .news-section { padding: 80px 10%; background: var(--gray-bg); }
-        .scroll-wrapper { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; scroll-snap-type: x mandatory; }
+        .news-container-relative { position: relative; display: flex; align-items: center; }
+        
+        .scroll-wrapper { 
+            display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; 
+            scrollbar-width: none; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+            width: 100%;
+        }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
+
+        .scroll-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; background: var(--white); border: none;
+            border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: var(--dark-navy); cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); opacity: 0; pointer-events: none;
+        }
+        .news-container-relative:hover .scroll-btn { opacity: 1; pointer-events: all; }
+        .scroll-btn:hover { background: var(--utat-blue); color: white; transform: translateY(-50%) scale(1.1); }
+        
+        .btn-left { left: -25px; }
+        .btn-right { right: -25px; }
+
         .news-card { 
             min-width: 380px; background: white; border-radius: 25px; overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.04); scroll-snap-align: start; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
@@ -87,78 +107,46 @@
         .news-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .news-card img { width: 100%; height: 240px; object-fit: cover; }
         .news-content { padding: 30px; }
-        .news-content h3 { font-size: 1.3rem; margin-bottom: 10px; }
-        .read-more-btn { color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-top: 15px; }
+        .news-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 10px; color: var(--dark-navy); }
+        .read-more-btn { font-family: 'Montserrat', sans-serif; color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-block; margin-top: 15px; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* ÜYE OL PANELİ (Modern Tasarım) */
         .join-us-panel {
-            background: var(--dark-navy);
-            color: white;
-            padding: 60px 10%;
-            margin: 80px 8%;
-            border-radius: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            position: relative;
-            overflow: hidden;
+            background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px;
+            display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;
         }
-        .join-us-panel::before {
-            content: ''; position: absolute; top: -50%; left: -10%; width: 300px; height: 300px;
-            background: var(--utat-blue); opacity: 0.1; border-radius: 50%;
-        }
-        .join-content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
-        .join-content p { font-size: 1.1rem; opacity: 0.8; }
-        .join-btn {
-            background: var(--utat-blue);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            white-space: nowrap;
-            z-index: 1;
-        }
+        .join-us-panel::before { content: ''; position: absolute; top: -50%; left: -10%; width: 300px; height: 300px; background: var(--utat-blue); opacity: 0.1; border-radius: 50%; }
+        .join-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px; }
+        .join-content p { font-family: 'Lora', serif; font-size: 1.2rem; opacity: 0.8; font-style: italic; }
+        .join-btn { font-family: 'Montserrat', sans-serif; background: var(--utat-blue); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); white-space: nowrap; z-index: 1; }
         .join-btn:hover { background: white; color: var(--dark-navy); transform: scale(1.05); }
 
-        /* Profesyonel Ekip Yapılanması */
         .team-section { padding: 80px 8%; text-align: center; }
         .unit-container { margin-bottom: 90px; }
-        .unit-header { 
-            font-size: 1.1rem; font-weight: 700; color: var(--white); background: var(--dark-navy);
-            display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px;
-            letter-spacing: 3px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); text-transform: uppercase;
-        }
+        .unit-header { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); background: var(--dark-navy); display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; letter-spacing: 3px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); text-transform: uppercase; }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 35px; justify-content: center; }
         
-        .member-card { 
-            background: white; padding: 40px 20px; border-radius: 30px; 
-            transition: var(--transition); border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
+        .member-card { background: white; padding: 40px 20px; border-radius: 30px; transition: var(--transition); border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .member-card:hover { transform: translateY(-8px); border-color: var(--utat-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.06); }
         .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; background: white; }
         .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .member-card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--dark-navy); }
-        .member-card p { font-size: 0.85rem; color: var(--utat-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: var(--dark-navy); }
+        .member-card p { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--utat-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
 
         footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
+        footer h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 2px; font-size: 2.2rem; }
         .social-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
         .social-icons a { color: white; font-size: 2rem; transition: var(--transition); }
         .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
-        .footer-mail { font-size: 1.2rem; color: var(--utat-blue); text-decoration: none; font-weight: 600; }
+        .footer-mail { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: var(--utat-blue); text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
 
         @media (max-width: 992px) {
             .join-us-panel { flex-direction: column; text-align: center; gap: 30px; margin: 40px 5%; }
-            header h1 { font-size: 2.8rem; }
-            .nav-links { gap: 15px; }
-            .nav-links li:not(:last-child) { display: none; } /* Mobilde menüyü sadeleştir, sadece Üye Ol'u göster */
+            header h1 { font-size: 3.5rem; }
+            .nav-links li:not(:last-child) { display: none; }
             .logo-text-nav { font-size: 1.1rem; }
             .logo-area img { height: 50px; }
             .news-card { min-width: 300px; }
+            .scroll-btn { display: none; } /* Mobilde oka gerek yok, elle kaydırmak doğal */
         }
     </style>
 </head>
@@ -167,10 +155,7 @@
     <nav>
         <a href="#" class="logo-area">
             <img src="logo.png" alt="BTÜ UTAT">
-            <div class="logo-text-nav">
-                ULUSLARARASI TİCARET
-                <span>ARAŞTIRMALARI TOPLULUĞU</span>
-            </div>
+            <div class="logo-text-nav">ULUSLARARASI TİCARET<span>ARAŞTIRMALARI TOPLULUĞU</span></div>
         </a>
         <ul class="nav-links">
             <li><a href="#vizyon">Vizyon</a></li>
@@ -189,7 +174,7 @@
     </header>
 
     <section id="vizyon" style="padding: 100px 10%; text-align: center;">
-        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 50px;">Stratejik Vizyonumuz</h2>
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 50px;">Stratejik Vizyonumuz</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
             <div class="member-card" style="padding: 60px 40px;">
                 <i class="fas fa-globe-americas" style="font-size: 3.5rem; color: var(--utat-blue); margin-bottom: 25px;"></i>
@@ -205,33 +190,39 @@
     </section>
 
     <section id="haberler" class="news-section">
-        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; text-align: center; margin-bottom: 10px;">Haberler & Duyurular</h2>
-        <p style="text-align: center; opacity: 0.5; margin-bottom: 50px;">(Kaydırarak inceleyebilirsiniz.)</p>
-        <div class="scroll-wrapper">
-            <div class="news-card">
-                <img src="etkinlik1.jpg" alt="LinkedIn">
-                <div class="news-content">
-                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">EĞİTİM</p>
-                    <h3>Etkili LinkedIn Yönetimi Semineri</h3>
-                    <p style="font-size: 0.95rem; opacity: 0.7;">Dijital dünyada profesyonel varlığınızı nasıl güçlendirirsiniz?</p>
-                    <a href="./haber1/" class="read-more-btn">Haberin Devamı →</a>
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; text-align: center; margin-bottom: 10px;">Haberler & Duyurular</h2>
+        <p style="text-align: center; font-family: 'Lora'; font-style: italic; opacity: 0.6; margin-bottom: 50px;">(Kaydırarak inceleyebilirsiniz.)</p>
+        
+        <div class="news-container-relative">
+            <button class="scroll-btn btn-left" id="slideLeft"><i class="fas fa-chevron-left"></i></button>
+
+            <div class="scroll-wrapper" id="news-slider">
+                <div class="news-card">
+                    <img src="etkinlik1.jpg" alt="LinkedIn">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">EĞİTİM</p>
+                        <h3>Etkili LinkedIn Yönetimi Semineri</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7;">Dijital dünyada profesyonel varlığınızı nasıl güçlendirirsiniz?</p>
+                        <a href="./haber1/" class="read-more-btn">Haberin Devamı →</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="etkinlik2.jpg" alt="Vision Board">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">SOSYAL</p>
+                        <h3>Vision Board Etkinliği</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7;">Hedefleri görselleştirerek stratejik planlama yapıyoruz.</p>
+                        <a href="haber2.html" class="read-more-btn">Haberin Devamı →</a>
+                    </div>
                 </div>
             </div>
-            <div class="news-card">
-                <img src="etkinlik2.jpg" alt="Vision Board">
-                <div class="news-content">
-                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">SOSYAL</p>
-                    <h3>Vision Board Etkinliği</h3>
-                    <p style="font-size: 0.95rem; opacity: 0.7;">Hedefleri görselleştirerek stratejik planlama yapıyoruz.</p>
-                    <a href="haber2.html" class="read-more-btn">Haberin Devamı →</a>
-                </div>
-            </div>
+
+            <button class="scroll-btn btn-right" id="slideRight"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
     <section id="ekip" class="team-section">
-        <h2 style="font-family: 'Playfair Display'; font-size: 3.5rem; margin-bottom: 60px;">Yönetim Kurulu</h2>
-        
+        <h2 style="font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 60px;">Yönetim Kurulu</h2>
         <div class="unit-container">
             <div class="unit-header">Topluluk Başkanı</div>
             <div style="max-width: 320px; margin: 0 auto;">
@@ -283,25 +274,34 @@
     <section id="uye-ol" class="reveal">
         <div class="join-us-panel">
             <div class="join-content">
-                <h2>Geleceğin Ticaretini Birlikte Kuralım</h2>
+                <h2>Geleceğin Ticaretine Yön Verelim</h2>
                 <p>UTAT ailesinin bir parçası olun, kariyerinize yön verin.</p>
             </div>
-            <a href="https://forms.gle/XXXXX" target="_blank" class="join-btn">Şimdi Başvur</a>
+            <a href="https://forms.gle/XXXXX" target="_blank" class="join-btn">Üye Ol</a>
         </div>
     </section>
 
     <footer id="iletisim">
-        <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">BTÜ UTAT</h2>
+        <h2>BTÜ UTAT</h2>
         <div class="social-icons">
             <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
-        <p style="margin-bottom: 10px; opacity: 0.6;">Daha fazla bilgi için iletişime geçin:</p>
+        <p style="margin-bottom: 10px; opacity: 0.6; font-family: 'Poppins';">Daha fazla bilgi için iletişime geçin:</p>
         <a href="mailto:btuutat@gmail.com" class="footer-mail">btuutat@gmail.com</a>
-        <div style="margin-top: 50px; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px;">
+        <div style="margin-top: 50px; font-size: 0.8rem; opacity: 0.4; letter-spacing: 1px; font-family: 'Montserrat';">
             © 2026 BTÜ ULUSLARARASI TİCARET ARAŞTIRMALARI TOPLULUĞU - TÜM HAKLARI SAKLIDIR.
         </div>
     </footer>
+
+    <script>
+        const slider = document.getElementById('news-slider');
+        const btnLeft = document.getElementById('slideLeft');
+        const btnRight = document.getElementById('slideRight');
+
+        btnLeft.onclick = () => { slider.scrollBy({ left: -400, behavior: 'smooth' }); };
+        btnRight.onclick = () => { slider.scrollBy({ left: 400, behavior: 'smooth' }); };
+    </script>
 
 </body>
 </html>
