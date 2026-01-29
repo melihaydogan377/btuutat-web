@@ -10,87 +10,88 @@
         :root {
             --dark-navy: #0f172a;
             --utat-blue: #0ea5e9;
-            --soft-blue: #e0f2fe;
             --white: #ffffff;
             --gray-bg: #f8fafc;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.8; overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
 
-        /* Modern Animasyonlar */
-        @keyframes revealUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .reveal { animation: revealUp 1s ease forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { animation: fadeInUp 0.8s ease forwards; }
 
-        /* Glassmorphism Navbar */
+        /* Navigation */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 1rem 8%; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 1.2rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
         }
-        .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-area img { height: 55px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
-        .logo-text-nav { font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); letter-spacing: -0.5px; }
-        .logo-text-nav span { display: block; color: var(--utat-blue); font-size: 0.75rem; font-weight: 400; text-transform: uppercase; }
+        .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--dark-navy); }
+        .logo-area img { height: 55px; }
+        .logo-text-nav { font-weight: 700; font-size: 1rem; line-height: 1.2; text-transform: uppercase; }
+        .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 400; font-size: 0.8rem; }
 
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 500; position: relative; transition: var(--transition); }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--utat-blue); transition: var(--transition); }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; transition: var(--transition); }
         .nav-links a:hover { color: var(--utat-blue); }
-        .nav-links a:hover::after { width: 100%; }
 
-        /* Rich Hero Section */
+        /* Hero Section */
         header { 
-            height: 85vh; display: flex; flex-direction: column; justify-content: center; 
+            height: 70vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%), url('https://images.unsplash.com/photo-1454165833767-02a214d0237b?auto=format&fit=crop&w=1950&q=80');
-            background-size: cover; background-attachment: fixed; background-position: center; color: white;
+            background-size: cover; background-attachment: fixed; color: white;
         }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        header p { font-size: 1.6rem; color: var(--utat-blue); font-weight: 300; margin-bottom: 3rem; letter-spacing: 2px; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 1rem; }
+        header p { font-size: 1.5rem; color: var(--utat-blue); font-weight: 300; letter-spacing: 2px; }
 
-        /* İstatistik Bölümü */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: -60px; padding: 0 10%; z-index: 10; position: relative; }
-        .stat-card { background: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .stat-card h3 { font-size: 2.5rem; color: var(--utat-blue); }
-
-        /* Kaydırmalı Haberler - Zengin Görünüm */
-        .news-container { padding: 80px 10%; background: var(--gray-bg); }
-        .scroll-wrapper { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; scroll-snap-type: x mandatory; }
+        /* Haberler (Scroll) */
+        .news-section { padding: 80px 10%; background: var(--gray-bg); }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .scroll-wrapper { display: flex; gap: 25px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
-        .rich-card { 
-            min-width: 380px; background: white; border-radius: 25px; overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); scroll-snap-align: start; transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
+        .news-card { 
+            min-width: 350px; background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
         }
-        .rich-card:hover { transform: scale(1.02) translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        .card-tag { position: absolute; top: 20px; left: 20px; background: var(--utat-blue); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
+        .news-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .news-card img { width: 100%; height: 220px; object-fit: cover; }
+        .news-content { padding: 25px; }
 
-        /* İnteraktif Takvim */
-        .calendar-section { background: white; padding: 60px 10%; border-radius: 40px; margin: 40px 10%; box-shadow: 0 40px 100px rgba(0,0,0,0.05); }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; max-width: 600px; margin: 30px auto; }
-        .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; background: var(--gray-bg); }
-        .cal-day.active { background: var(--utat-blue); color: white; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.4); transform: scale(1.1); }
-
-        /* Ekip Kartları - Zengin Tasarım */
+        /* Ekip Bölümü */
         .team-section { padding: 100px 10%; text-align: center; }
-        .unit-box { margin-bottom: 80px; }
-        .unit-label { font-size: 0.9rem; letter-spacing: 4px; color: var(--utat-blue); font-weight: 700; margin-bottom: 40px; display: block; }
-        .rich-team-card { 
-            background: white; padding: 40px 20px; border-radius: 30px; transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.03); position: relative;
+        .unit-container { margin-bottom: 80px; }
+        .unit-header { 
+            font-size: 1.2rem; font-weight: 700; color: var(--white); background: var(--dark-navy);
+            display: inline-block; padding: 10px 40px; border-radius: 50px; margin-bottom: 40px;
+            letter-spacing: 2px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .rich-team-card:hover { background: var(--dark-navy); color: white; }
-        .rich-team-card .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; border: 4px solid var(--utat-blue); padding: 5px; }
-        .rich-team-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; justify-content: center; }
+        
+        /* Ekip Kartı */
+        .member-card { 
+            background: white; padding: 35px 20px; border-radius: 25px; 
+            transition: var(--transition); border: 1px solid var(--gray-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .member-card:hover { transform: translateY(-5px); border-color: var(--utat-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .p-img { width: 110px; height: 110px; border-radius: 50%; margin: 0 auto 20px; border: 3px solid var(--utat-blue); padding: 4px; }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .member-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .member-card p { font-size: 0.85rem; color: var(--utat-blue); font-weight: 600; text-transform: uppercase; }
 
-        /* İletişim */
-        .contact-box { background: var(--dark-navy); color: white; border-radius: 40px; margin: 0 10% 80px; padding: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .contact-form input, .contact-form textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px; color: white; border-radius: 15px; margin-bottom: 20px; }
+        /* Footer Simple */
+        footer { background: var(--dark-navy); color: white; padding: 60px 10% 40px; text-align: center; }
+        .footer-social a { color: white; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
+        .footer-social a:hover { color: var(--utat-blue); }
 
-        @media (max-width: 968px) { .contact-box { grid-template-columns: 1fr; padding: 40px; } header h1 { font-size: 2.5rem; } }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .news-card { min-width: 280px; }
+        }
     </style>
 </head>
 <body>
@@ -98,127 +99,126 @@
     <nav>
         <a href="#" class="logo-area">
             <img src="logo.png" alt="BTÜ UTAT">
-            <div class="logo-text-nav">BTÜ UTAT<span>Ticaretin Geleceği</span></div>
+            <div class="logo-text-nav">
+                BTÜ ULUSLARARASI TİCARET
+                <span>ARAŞTIRMALARI TOPLULUĞU</span>
+            </div>
         </a>
         <ul class="nav-links">
-            <li><a href="#vizyon">Vizyon</a></li>
+            <li><a href="#hakkimizda">Vizyon</a></li>
             <li><a href="#haberler">Haberler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
         </ul>
     </nav>
 
     <header>
         <div class="reveal">
-            <p>SINIRLARI AŞAN VİZYON</p>
             <h1>BTÜ UTAT</h1>
-            <a href="#vizyon" class="btn" style="background: var(--utat-blue); color: white; padding: 18px 50px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">Harekete Geç</a>
+            <p>"Ticaretin Rotasını Çiziyoruz"</p>
         </div>
     </header>
 
-    <div class="stats-grid">
-        <div class="stat-card"><h3>250+</h3><p>Aktif Üye</p></div>
-        <div class="stat-card"><h3>12+</h3><p>Sektörel Partner</p></div>
-        <div class="stat-card"><h3>20+</h3><p>Yıllık Etkinlik</p></div>
-    </div>
-
-    <section id="haberler" class="news-container reveal">
-        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 40px; text-align: center;">Haber Akışı</h2>
-        <div class="scroll-wrapper">
-            <div class="rich-card" id="card-1">
-                <div style="position: relative;">
-                    <img src="etkinlik1.jpg" style="width:100%; height:250px; object-fit:cover;">
-                    <span class="card-tag">ZİRVE</span>
-                </div>
-                <div style="padding: 30px;">
-                    <h3>LinkedIn Kariyer Zirvesi</h3>
-                    <p style="opacity: 0.7; font-size: 0.9rem;">Dijital dünyada kişisel markanızı nasıl konumlandırırsınız?</p>
-                    <a href="haber1.html" style="color: var(--utat-blue); text-decoration: none; font-weight: 700; display: block; margin-top: 20px;">İncele →</a>
-                </div>
+    <section id="hakkimizda" style="padding: 100px 10%; text-align: center;">
+        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 50px;">Vizyonumuz</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div class="member-card" style="padding: 50px;">
+                <i class="fas fa-globe-americas" style="font-size: 3rem; color: var(--utat-blue); margin-bottom: 20px;"></i>
+                <h3>Sektörel Derinlik</h3>
+                <p style="color: #666; text-transform: none;">Küresel ticaret dinamiklerini Bursa'nın sanayi gücüyle birleştiriyoruz.</p>
             </div>
-            <div class="rich-card" id="card-2">
-                <div style="position: relative;">
-                    <img src="etkinlik2.jpg" style="width:100%; height:250px; object-fit:cover;">
-                    <span class="card-tag">ATÖLYE</span>
-                </div>
-                <div style="padding: 30px;">
-                    <h3>Vision Board Günü</h3>
-                    <p style="opacity: 0.7; font-size: 0.9rem;">2026 hedeflerimizi estetik ve stratejiyle planladık.</p>
-                    <a href="haber2.html" style="color: var(--utat-blue); text-decoration: none; font-weight: 700; display: block; margin-top: 20px;">İncele →</a>
-                </div>
+            <div class="member-card" style="padding: 50px;">
+                <i class="fas fa-graduation-cap" style="font-size: 3rem; color: var(--utat-blue); margin-bottom: 20px;"></i>
+                <h3>Akademik Gelişim</h3>
+                <p style="color: #666; text-transform: none;">Eğitimler ve zirvelerle geleceğin dış ticaret uzmanlarını yetiştiriyoruz.</p>
             </div>
         </div>
     </section>
 
-    <div class="calendar-section reveal">
-        <h2 style="text-align: center; font-family: 'Playfair Display';">Etkinlik Takvimi</h2>
-        <div class="cal-grid">
-            <div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
-            <div class="cal-day active" onclick="highlightCard('card-1')">15</div>
-            <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
+    <section id="haberler" class="news-section">
+        <div class="section-header">
+            <h2 style="font-family: 'Playfair Display'; font-size: 3rem;">Haberler & Duyurular</h2>
         </div>
-    </div>
+        <div class="scroll-wrapper">
+            <div class="news-card">
+                <img src="etkinlik1.jpg" alt="LinkedIn">
+                <div class="news-content">
+                    <p style="color: var(--utat-blue); font-size: 0.8rem; font-weight: 700;">ZİRVE</p>
+                    <h3>LinkedIn Kariyer Semineri</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">Profesyonel ağ yönetimi ve kişisel markalaşma...</p>
+                    <a href="haber1.html" style="text-decoration: none; color: var(--dark-navy); font-weight: 700; display: block; margin-top: 15px;">Devamını Oku →</a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="etkinlik2.jpg" alt="Vision Board">
+                <div class="news-content">
+                    <p style="color: var(--utat-blue); font-size: 0.8rem; font-weight: 700;">WORKSHOP</p>
+                    <h3>Vision Board Etkinliği</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">Hedeflerin görselleştirilmesi ve stratejik planlama...</p>
+                    <a href="haber2.html" style="text-decoration: none; color: var(--dark-navy); font-weight: 700; display: block; margin-top: 15px;">Devamını Oku →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="ekip" class="team-section">
-        <span class="unit-label">YÖNETİM KADROSU</span>
+        <h2 style="font-family: 'Playfair Display'; font-size: 3.5rem; margin-bottom: 60px;">Yönetim Kurulu</h2>
         
-        <div class="unit-box">
-            <h2 style="font-family: 'Playfair Display'; margin-bottom: 40px;">Topluluk Başkanı</h2>
-            <div style="max-width: 350px; margin: 0 auto;">
-                <div class="rich-team-card">
+        <div class="unit-container">
+            <div class="unit-header">TOPLULUK BAŞKANI</div>
+            <div style="max-width: 300px; margin: 0 auto;">
+                <div class="member-card">
                     <div class="p-img"><img src="melih.png"></div>
                     <h3>Melih AYDOĞAN</h3>
-                    <p style="color: var(--utat-blue); font-weight: 700; letter-spacing: 2px;">KING REGARDS</p>
+                    <p>KING REGARDS</p>
                 </div>
             </div>
         </div>
 
-        <span class="unit-label">BİRİMLERİMİZ</span>
-        <div class="grid-team">
-            <div class="rich-team-card"><h3>Yunus Emre KATAR</h3><p>Etkinlik Başkanı</p></div>
-            <div class="rich-team-card"><h3>Betül AKTEPE</h3><p>Etkinlik Üyesi</p></div>
-            <div class="rich-team-card"><h3>Mehmet AKDOĞAN</h3><p>Etkinlik Üyesi</p></div>
-            <div class="rich-team-card"><h3>Sude GENÇ</h3><p>Etkinlik Üyesi</p></div>
-            <div class="rich-team-card"><h3>Sinem AKYILDIZ</h3><p>Etkinlik Üyesi</p></div>
-            <div class="rich-team-card"><h3>Ferhat ÖMEROĞLU</h3><p>Dış İlişkiler Bşk.</p></div>
-            <div class="rich-team-card"><h3>Diana SECHERLI</h3><p>Dış İlişkiler Üyesi</p></div>
-            <div class="rich-team-card"><h3>Eymen KURT</h3><p>Dış İlişkiler Üyesi</p></div>
-            <div class="rich-team-card"><h3>Helen YILMAZ</h3><p>Medya Başkanı</p></div>
-            <div class="rich-team-card"><h3>İzem ÇETİN</h3><p>Medya Üyesi</p></div>
-            <div class="rich-team-card"><h3>Yaren TUNCER</h3><p>Sponsorluk Başkanı</p></div>
-            <div class="rich-team-card"><h3>Rümeysa TEMÜR</h3><p>Sponsorluk Üyesi</p></div>
-        </div>
-    </section>
-
-    <section id="iletisim" class="contact-box reveal">
-        <div>
-            <h2 style="font-family: 'Playfair Display'; font-size: 3rem;">Bize Ulaşın</h2>
-            <p style="opacity: 0.6; margin-bottom: 40px;">Geleceğin ticaret ağını birlikte kuralım.</p>
-            <p>📍 Bursa Teknik Üniversitesi Mimar Sinan Yerleşkesi</p>
-            <p>📧 btuutat@gmail.com</p>
-            <div style="margin-top: 30px; font-size: 2rem;">
-                <i class="fab fa-linkedin"></i> <i class="fab fa-instagram"></i>
+        <div class="unit-container">
+            <div class="unit-header">ETKİNLİK VE ORGANİZASYON BİRİMİ</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sude.png"></div><h3>Sude GENÇ</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sinem.png"></div><h3>Sinem AKYILDIZ</h3><p>Birim Üyesi</p></div>
             </div>
         </div>
-        <div class="contact-form">
-            <input type="text" placeholder="Adınız Soyadınız">
-            <input type="email" placeholder="E-posta">
-            <textarea rows="4" placeholder="Mesajınız"></textarea>
-            <button style="background: var(--utat-blue); color: white; border: none; padding: 20px; width: 100%; border-radius: 15px; font-weight: 700; cursor: pointer;">Gönder</button>
+
+        <div class="unit-container">
+            <div class="unit-header">DIŞ İLİŞKİLER BİRİMİ</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="diana.png"></div><h3>Diana SECHERLI</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="eymen.png"></div><h3>Eymen KURT</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">BASIN VE MEDYA BİRİMİ</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="helen.png"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="izem.png"></div><h3>İzem ÇETİN</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">SPONSORLUK BİRİMİ</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="yaren.png"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="rumeysa.png"></div><h3>Rümeysa TEMÜR</h3><p>Birim Üyesi</p></div>
+            </div>
         </div>
     </section>
 
-    <script>
-        function highlightCard(id) {
-            const card = document.getElementById(id);
-            card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'center' });
-            card.style.boxShadow = "0 0 50px rgba(14, 165, 233, 0.5)";
-            card.style.transform = "scale(1.05)";
-            setTimeout(() => {
-                card.style.boxShadow = "0 10px 30px rgba(0,0,0,0.03)";
-                card.style.transform = "scale(1)";
-            }, 2000);
-        }
-    </script>
+    <footer>
+        <div class="footer-social">
+            <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="margin-top: 25px; opacity: 0.7;">btuutat@gmail.com</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.4;">© 2026 BTÜ UTAT - Tüm Hakları Saklıdır.</p>
+    </footer>
+
 </body>
 </html>
