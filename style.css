@@ -1,0 +1,59 @@
+/* BTÜ UTAT PROFESYONEL TASARIM DOSYASI */
+:root {
+    --dark-navy: #1a365d;
+    --light-blue: #5bc0de;
+    --white: #ffffff;
+    --gray: #f4f7f6;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
+
+/* Yumuşak Giriş Animasyonu */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { animation: fadeInUp 0.8s ease-out forwards; }
+
+/* Cam Efektli (Glassmorphism) Navigasyon */
+nav { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 1rem 8%; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
+}
+.logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+.logo-area img { height: 60px; transition: var(--transition); }
+.logo-text-nav { font-weight: 700; font-size: 1rem; color: var(--dark-navy); line-height: 1.1; }
+.logo-text-nav span { display: block; color: var(--light-blue); font-size: 0.8rem; font-weight: 400; }
+
+.nav-links { list-style: none; display: flex; gap: 25px; }
+.nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; transition: var(--transition); }
+.nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--light-blue); transition: var(--transition); }
+.nav-links a:hover { color: var(--light-blue); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero Alanı */
+header { 
+    height: 75vh; display: flex; flex-direction: column; justify-content: center; 
+    align-items: center; text-align: center; padding: 0 10%;
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(0, 31, 63, 0.9) 100%), url('https://images.unsplash.com/photo-1521791136064-7986c2923216?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed; color: white;
+}
+header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2.5rem; }
+
+/* Butonlar */
+.btn { text-decoration: none; padding: 15px 35px; border-radius: 5px; font-weight: bold; transition: var(--transition); border: none; cursor: pointer; }
+.btn-primary { background: var(--light-blue); color: white; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(91, 192, 222, 0.4); background: white; color: var(--dark-navy); }
+.btn-outline { border: 2px solid white; color: white; background: transparent; }
+.btn-outline:hover { background: white; color: var(--dark-navy); transform: translateY(-3px); }
+
+/* Kartlar */
+.service-card, .event-card, .team-card { transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
+.service-card:hover, .event-card:hover, .team-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* Footer */
+footer { background: var(--dark-navy); color: white; padding: 60px 10% 20px; text-align: center; }
+.footer-mail { color: var(--light-blue); text-decoration: none; font-weight: 600; transition: var(--transition); }
+.footer-mail:hover { text-decoration: underline; }
