@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haber Detayı | BTÜ UTAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-navy: #1a365d;
+            --light-blue: #5bc0de;
+            --white: #ffffff;
+            --gray: #f4f7f6;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: var(--dark-navy); background-color: var(--white); }
+
+        /* Haber Navigasyon */
+        nav { 
+            padding: 1.2rem 8%; 
+            background: white; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); 
+            display: flex; 
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--dark-navy); 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--light-blue); transform: translateX(-5px); }
+
+        /* Haber İçerik Alanı */
+        .container { max-width: 900px; margin: 60px auto; padding: 0 25px; }
+        
+        .news-category { 
+            display: inline-block; 
+            background: var(--light-blue); 
+            color: white; 
+            padding: 5px 15px; 
+            border-radius: 5px; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--dark-navy); }
+        
+        .meta-info { font-size: 0.9rem; color: #777; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .meta-info i { margin-right: 5px; color: var(--light-blue); }
+
+        .news-img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 40px; }
+
+        .content { font-size: 1.1rem; color: #444; text-align: justify; }
+        .content p { margin-bottom: 20px; }
+        
+        /* Alıntı Kısmı */
+        blockquote {
+            background: var(--gray);
+            border-left: 5px solid var(--light-blue);
+            padding: 20px 30px;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--dark-navy);
+        }
+
+        /* Footer */
+        footer { background: var(--dark-navy); color: white; text-align: center; padding: 40px 0; margin-top: 80px; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .container { margin: 30px auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+        </a>
+        <div style="margin-left: auto; font-weight: 700; color: var(--light-blue); letter-spacing: 1px;">
+            BTÜ UTAT <span style="color: var(--dark-navy);">HABER</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <span class="news-category">Eğitim & Kariyer</span>
+        <h1>LinkedIn Semineri: Dijital Kimlik ve Profesyonel Network Yönetimi</h1>
+        
+        <div class="meta-info">
+            <span><i class="far fa-calendar-alt"></i> Ocak 2026</span>
+            <span style="margin-left: 20px;"><i class="far fa-user"></i> BTÜ UTAT Medya Birimi</span>
+        </div>
+
+        <img src="etkinlik1.jpg" alt="LinkedIn Etkinlik Görseli" class="news-img">
+
+        <div class="content">
+            <p>
+                <strong>Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu (UTAT)</strong> olarak, 
+                dijital çağın gerekliliklerine uygun olarak üyelerinin kariyer yolculuklarını desteklemeye devam ediyor. 
+                Topluluğumuz tarafından organize edilen "LinkedIn ve Kişisel Marka Yönetimi" eğitimi, 
+                öğrencilerin ve genç profesyonel adaylarının yoğun katılımıyla gerçekleştirildi.
+            </p>
+
+            <blockquote>
+                "Dijital dünyasında var olmanın ilk kuralı, doğru bir profesyonel kimlik inşa etmektir."
+            </blockquote>
+
+            <p>
+                ​Eğitimde, günümüz iş dünyasının en önemli ağ kurma platformu olan LinkedIn’in stratejik kullanımı tüm boyutlarıyla ele alındı. 
+                Katılımcılar; teknik bilgilerin ötesinde, dijital ortamda profesyonel bir duruş sergilemenin ve 
+                doğru network kurmanın inceliklerini öğrenme fırsatı buldu.
+            </p>
+
+            <p>
+                Topluluk başkanımız <strong>Melih AYDOĞAN</strong> dijital platformlarda doğru konumlanmanın önemine dikkat çekti. Aydoğan, LinkedIn’in sadece bir dijital özgeçmiş değil, yaşayan bir kariyer ekosistemi olduğunu vurgulayarak; "Dijital dünyada doğru adımlarla var olmak, profesyonel hayatın kapılarını henüz öğrenciyken aralamamızı sağlar," dedi.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 btuutat.com.tr - Ticaretin Rotasını Çiziyoruz</p>
+        <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu</p>
+    </footer>
+
+</body>
+</html>
