@@ -30,9 +30,27 @@
             box-shadow: 0 4px 30px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
         }
         .logo-area { display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--dark-navy); }
-        .logo-area img { height: 60px; }
-        .logo-text-nav { font-weight: 700; font-size: 0.95rem; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.5px; }
-        .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 400; font-size: 0.75rem; letter-spacing: 1px; }
+        .logo-area img { height: 70px; } /* Logo boyutu biraz artırıldı */
+        
+        /* YAZI BOYUTU EŞİTLEME VE BÜYÜTME */
+        .logo-text-nav { 
+            font-weight: 700; 
+            font-size: 1.5rem; /* Başlık büyütüldü */
+            line-height: 1; 
+            text-transform: uppercase; 
+            letter-spacing: -0.5px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .logo-text-nav span { 
+            display: block; 
+            color: var(--utat-blue); 
+            font-weight: 600; 
+            font-size: 0.9rem; /* Alt yazı dengelendi */
+            letter-spacing: 1.5px;
+            margin-top: 3px;
+        }
 
         .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; transition: var(--transition); }
@@ -50,8 +68,42 @@
         header h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         header p { font-size: 1.6rem; color: var(--utat-blue); font-weight: 300; letter-spacing: 3px; font-style: italic; }
 
+        /* ÜYE OL PANELİ (NEW) */
+        .join-us-panel {
+            background: var(--dark-navy);
+            color: white;
+            padding: 60px 10%;
+            margin: 40px 8%;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .join-us-panel::before {
+            content: ''; position: absolute; top: -50%; left: -10%; width: 300px; height: 300px;
+            background: var(--utat-blue); opacity: 0.1; border-radius: 50%;
+        }
+        .join-content h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        .join-content p { font-size: 1.1rem; opacity: 0.8; }
+        .join-btn {
+            background: var(--utat-blue);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            white-space: nowrap;
+            z-index: 1;
+        }
+        .join-btn:hover { background: white; color: var(--dark-navy); transform: scale(1.05); }
+
         /* Kaydırmalı Haberler Bölümü */
-        .news-section { padding: 100px 10%; background: var(--gray-bg); }
+        .news-section { padding: 80px 10%; background: var(--gray-bg); }
         .scroll-wrapper { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; scroll-snap-type: x mandatory; }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
         .news-card { 
@@ -65,7 +117,7 @@
         .read-more-btn { color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-top: 15px; }
 
         /* Profesyonel Ekip Yapılanması */
-        .team-section { padding: 100px 8%; text-align: center; }
+        .team-section { padding: 80px 8%; text-align: center; }
         .unit-container { margin-bottom: 90px; }
         .unit-header { 
             font-size: 1.1rem; font-weight: 700; color: var(--white); background: var(--dark-navy);
@@ -74,7 +126,6 @@
         }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 35px; justify-content: center; }
         
-        /* Üye Kartı Tasarımı */
         .member-card { 
             background: white; padding: 40px 20px; border-radius: 30px; 
             transition: var(--transition); border: 1px solid #f1f5f9;
@@ -86,18 +137,17 @@
         .member-card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--dark-navy); }
         .member-card p { font-size: 0.85rem; color: var(--utat-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Footer */
         footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
         .social-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
         .social-icons a { color: white; font-size: 2rem; transition: var(--transition); }
         .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
         .footer-mail { font-size: 1.2rem; color: var(--utat-blue); text-decoration: none; font-weight: 600; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
+            .join-us-panel { flex-direction: column; text-align: center; gap: 30px; }
             header h1 { font-size: 2.8rem; }
             .nav-links { display: none; }
-            .news-card { min-width: 300px; }
-            .logo-text-nav { font-size: 0.75rem; }
+            .logo-text-nav { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -144,12 +194,12 @@
 
     <section id="haberler" class="news-section">
         <h2 style="font-family: 'Playfair Display'; font-size: 3rem; text-align: center; margin-bottom: 10px;">Haberler & Duyurular</h2>
-        <p style="text-align: center; opacity: 0.5; margin-bottom: 50px;">(Kaydırarak inceleyebilirsiniz)</p>
+        <p style="text-align: center; opacity: 0.5; margin-bottom: 50px;">(Kaydırarak inceleyebilirsiniz.)</p>
         <div class="scroll-wrapper">
             <div class="news-card">
                 <img src="etkinlik1.jpg" alt="LinkedIn">
                 <div class="news-content">
-                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">ZİRVE</p>
+                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">EĞİTİM</p>
                     <h3>Etkili LinkedIn Yönetimi Semineri</h3>
                     <p style="font-size: 0.95rem; opacity: 0.7;">Dijital dünyada profesyonel varlığınızı nasıl güçlendirirsiniz?</p>
                     <a href="./haber1/" class="read-more-btn">Haberin Devamı →</a>
@@ -158,12 +208,22 @@
             <div class="news-card">
                 <img src="etkinlik2.jpg" alt="Vision Board">
                 <div class="news-content">
-                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">ATÖLYE</p>
+                    <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px;">SOSYAL</p>
                     <h3>Vision Board Etkinliği</h3>
                     <p style="font-size: 0.95rem; opacity: 0.7;">Hedefleri görselleştirerek stratejik planlama yapıyoruz.</p>
                     <a href="haber2.html" class="read-more-btn">Haberin Devamı →</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="uye-ol" class="reveal">
+        <div class="join-us-panel">
+            <div class="join-content">
+                <h2>Geleceğin Ticaretini Birlikte Kuralım</h2>
+                <p>UTAT ailesinin bir parçası olun, kariyerinize yön verin.</p>
+            </div>
+            <a href="https://forms.gle/XXXXX" target="_blank" class="join-btn">Şimdi Başvur</a>
         </div>
     </section>
 
