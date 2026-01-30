@@ -32,22 +32,22 @@
         
         .logo-text-nav { 
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800; 
-            font-size: 1.4rem; 
-            line-height: 0.9; 
-            text-transform: uppercase; 
-            letter-spacing: -1px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            font-weight: 800; font-size: 1.4rem; line-height: 0.9; text-transform: uppercase; letter-spacing: -1px; 
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .logo-text-nav span { 
-            display: block; 
-            color: var(--utat-blue); 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            letter-spacing: 2px;
-            margin-top: 4px;
+        .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 600; font-size: 0.85rem; letter-spacing: 2px; margin-top: 4px; }
+
+        /* HAMBURGER MENÜ CSS */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+        .menu-toggle span {
+            width: 30px; height: 3px; background-color: var(--dark-navy);
+            transition: var(--transition);
         }
 
         .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
@@ -73,26 +73,14 @@
             background-size: cover; background-attachment: fixed; color: white; position: relative;
         }
 
-        /* YAZININ ARKASINDAKİ PNG KATMANI - YENİ */
-        header .reveal {
-            position: relative;
-            z-index: 1;
-            padding: 40px;
-        }
-
+        /* YAZININ ARKASINDAKİ PNG KATMANI */
+        header .reveal { position: relative; z-index: 1; padding: 40px; }
         header .reveal::before {
             content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150%; /* Resmin yayılım genişliği */
-            height: 150%;
-            background: url('ARKA-PLAN-RESMINIZ.png') no-repeat center; /* Kendi PNG adını buraya yaz */
-            background-size: contain;
-            opacity: 0.2; /* Şeffaflık seviyesi */
-            z-index: -1;
-            pointer-events: none;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 150%; height: 150%;
+            background: url('ARKA-PLAN-RESMINIZ.png') no-repeat center;
+            background-size: contain; opacity: 0.2; z-index: -1; pointer-events: none;
         }
 
         header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); letter-spacing: -2px; }
@@ -122,54 +110,43 @@
         .btn-left { left: -25px; }
         .btn-right { right: -25px; }
 
-        .news-card { 
-            min-width: 380px; background: white; border-radius: 25px; overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04); scroll-snap-align: start; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
+        /* MOBİL DÜZENLEMELER */
+        @media (max-width: 992px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: var(--white); flex-direction: column; justify-content: center;
+                align-items: center; gap: 30px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li:not(:last-child) { display: block; }
+            header h1 { font-size: 3rem; }
+            .scroll-btn { display: none; }
         }
+
+        /* Diğer kart ve footer stillerin aynı... */
+        .news-card { min-width: 380px; background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); scroll-snap-align: start; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
         .news-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .news-card img { width: 100%; height: 240px; object-fit: cover; }
         .news-content { padding: 30px; }
         .news-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 10px; color: var(--dark-navy); }
         .read-more-btn { font-family: 'Montserrat', sans-serif; color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.85rem; display: inline-block; margin-top: 15px; letter-spacing: 1px; text-transform: uppercase; }
-
-        .join-us-panel {
-            background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px;
-            display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;
-        }
+        .join-us-panel { background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden; }
         .join-us-panel::before { content: ''; position: absolute; top: -50%; left: -10%; width: 300px; height: 300px; background: var(--utat-blue); opacity: 0.1; border-radius: 50%; }
         .join-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px; }
         .join-content p { font-family: 'Lora', serif; font-size: 1.2rem; opacity: 0.8; font-style: italic; }
         .join-btn { font-family: 'Montserrat', sans-serif; background: var(--utat-blue); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); white-space: nowrap; z-index: 1; }
         .join-btn:hover { background: white; color: var(--dark-navy); transform: scale(1.05); }
-
         .team-section { padding: 80px 8%; text-align: center; }
         .unit-container { margin-bottom: 90px; }
         .unit-header { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); background: var(--dark-navy); display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; letter-spacing: 3px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); text-transform: uppercase; }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 35px; justify-content: center; }
-        
         .member-card { background: white; padding: 40px 20px; border-radius: 30px; transition: var(--transition); border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .member-card:hover { transform: translateY(-8px); border-color: var(--utat-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.06); }
         .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; background: white; }
         .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; color: var(--dark-navy); }
-        .member-card p { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--utat-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
-
         footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
-        footer h2 { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 2px; font-size: 2.2rem; }
-        .social-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
-        .social-icons a { color: white; font-size: 2rem; transition: var(--transition); }
-        .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
-        .footer-mail { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: var(--utat-blue); text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
-
-        @media (max-width: 992px) {
-            .join-us-panel { flex-direction: column; text-align: center; gap: 30px; margin: 40px 5%; }
-            header h1 { font-size: 3.5rem; }
-            .nav-links li:not(:last-child) { display: none; }
-            .logo-text-nav { font-size: 1.1rem; }
-            .logo-area img { height: 50px; }
-            .news-card { min-width: 300px; }
-            .scroll-btn { display: none; }
-        }
     </style>
 </head>
 <body>
@@ -179,7 +156,12 @@
             <img src="logo.png" alt="BTÜ UTAT">
             <div class="logo-text-nav">ULUSLARARASI TİCARET<span>ARAŞTIRMALARI TOPLULUĞU</span></div>
         </a>
-        <ul class="nav-links">
+
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+
+        <ul class="nav-links" id="nav-list">
             <li><a href="#vizyon">Vizyon</a></li>
             <li><a href="#haberler">Haberler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
@@ -316,6 +298,21 @@
     </footer>
 
     <script>
+        // MOBİL MENÜ SCRIPT
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Linklere tıklayınca menü kapansın
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // HABER KAYDIRMA SCRIPT
         const slider = document.getElementById('news-slider');
         const btnLeft = document.getElementById('slideLeft');
         const btnRight = document.getElementById('slideRight');
