@@ -26,7 +26,20 @@ nav {
 .logo-text-nav { font-weight: 700; font-size: 1rem; color: var(--dark-navy); line-height: 1.1; }
 .logo-text-nav span { display: block; color: var(--light-blue); font-size: 0.8rem; font-weight: 400; }
 
-.nav-links { list-style: none; display: flex; gap: 25px; }
+/* --- MOBİL HAMBURGER MENÜ BUTONU --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+.menu-toggle span {
+    width: 30px; height: 3px; background-color: var(--dark-navy);
+    transition: var(--transition);
+}
+
+.nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; position: relative; transition: var(--transition); }
 .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--light-blue); transition: var(--transition); }
 .nav-links a:hover { color: var(--light-blue); }
@@ -37,10 +50,21 @@ header {
     height: 75vh; display: flex; flex-direction: column; justify-content: center; 
     align-items: center; text-align: center; padding: 0 10%;
     background: linear-gradient(135deg, rgba(26, 54, 93, 0.9) 0%, rgba(0, 31, 63, 0.9) 100%), url('https://images.unsplash.com/photo-1521791136064-7986c2923216?auto=format&fit=crop&w=1350&q=80');
-    background-size: cover; background-attachment: fixed; color: white;
+    background-size: cover; background-attachment: fixed; color: white; position: relative;
 }
-header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
-header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2.5rem; }
+
+/* --- BAŞLIK ARKASI PNG KATMANI --- */
+header .reveal { position: relative; z-index: 1; padding: 40px; }
+header .reveal::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 140%; height: 140%;
+    background: url('ARKA-PLAN-RESMINIZ.png') no-repeat center;
+    background-size: contain; opacity: 0.15; z-index: -1; pointer-events: none;
+}
+
+header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; position: relative; }
+header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); margin-bottom: 2.5rem; position: relative; }
 
 /* Butonlar */
 .btn { text-decoration: none; padding: 15px 35px; border-radius: 5px; font-weight: bold; transition: var(--transition); border: none; cursor: pointer; }
@@ -49,9 +73,41 @@ header p { font-style: italic; font-size: 1.8rem; color: var(--light-blue); marg
 .btn-outline { border: 2px solid white; color: white; background: transparent; }
 .btn-outline:hover { background: white; color: var(--dark-navy); transform: translateY(-3px); }
 
+/* --- HABERLER OKLARI --- */
+.news-container-relative { position: relative; display: flex; align-items: center; width: 100%; }
+.scroll-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px; background: var(--white); border: none;
+    border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--dark-navy); cursor: pointer; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition); opacity: 0; pointer-events: none;
+}
+.news-container-relative:hover .scroll-btn { opacity: 1; pointer-events: all; }
+.scroll-btn:hover { background: var(--light-blue); color: white; transform: translateY(-50%) scale(1.1); }
+.btn-left { left: -25px; }
+.btn-right { right: -25px; }
+
 /* Kartlar */
 .service-card, .event-card, .team-card { transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
 .service-card:hover, .event-card:hover, .team-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* --- MOBİL AYARLAR --- */
+@media (max-width: 992px) {
+    nav { padding: 1rem 5%; }
+    .menu-toggle { display: flex; } /* 3 çizgi mobilde çıkar */
+    
+    .nav-links {
+        position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+        background: var(--white); flex-direction: column; justify-content: center;
+        align-items: center; gap: 30px; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    }
+    .nav-links.active { right: 0; }
+    
+    header h1 { font-size: 2.5rem; }
+    .scroll-btn { display: none; } /* Mobilde oklar kalabalık yapmasın */
+}
 
 /* Footer */
 footer { background: var(--dark-navy); color: white; padding: 60px 10% 20px; text-align: center; }
