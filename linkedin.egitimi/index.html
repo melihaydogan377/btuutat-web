@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkedIn Semineri | BTÜ UTAT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --dark-navy: #0f172a;
             --utat-blue: #0ea5e9;
-            --soft-blue: #bae6fd;
             --white: #ffffff;
             --gray-bg: #f8fafc;
             --text-gray: #475569;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: var(--text-gray); background-color: var(--white); overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: var(--text-gray); background-color: var(--white); }
 
-        /* Haber Navigasyon - Premium Cam Efekti */
+        /* MİNİMAL NAV - SADECE DÖNÜŞ BUTONU */
         nav { 
             padding: 1rem 8%; 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(15px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.03); 
+            background: var(--white);
             display: flex; 
             align-items: center;
             position: sticky;
@@ -38,120 +33,70 @@
             color: var(--dark-navy); 
             font-weight: 700; 
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: flex; 
             align-items: center; 
-            gap: 12px;
-            transition: var(--transition);
-            text-transform: uppercase;
+            gap: 8px;
             letter-spacing: 1px;
         }
-        .back-btn:hover { color: var(--utat-blue); transform: translateX(-5px); }
 
-        /* Haber Başlık Alanı (Hero Lite) */
-        .news-header {
-            background: var(--gray-bg);
-            padding: 80px 0 60px;
-            text-align: center;
-        }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 0 25px; }
+        /* MİNİMAL BAŞLIK ALANI */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 25px; }
         
-        .news-category { 
-            display: inline-block; 
-            background: var(--utat-blue); 
-            color: white; 
-            padding: 6px 18px; 
-            border-radius: 50px; 
+        .date-badge { 
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.75rem; 
+            color: var(--utat-blue); 
             font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         h1 { 
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 3rem; 
+            font-size: 2.5rem; 
             line-height: 1.1; 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
             color: var(--dark-navy); 
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
         }
-        
-        .meta-info { 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem; 
-            color: #94a3b8; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 0;
-        }
-        .meta-info span { margin: 0 15px; }
-        .meta-info i { margin-right: 8px; color: var(--utat-blue); }
 
-        /* Haber Görseli */
-        .image-wrapper { margin-top: -40px; }
         .news-img { 
             width: 100%; 
-            border-radius: 30px; 
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1); 
-            margin-bottom: 50px;
-            object-fit: cover;
-            height: 450px;
+            border-radius: 20px; 
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Haber İçeriği - Dergi Formatı */
-        .content { 
-            font-size: 1.15rem; 
-            color: #334155; 
-            text-align: left; /* Justify bazen boşlukları bozar, Left daha modern */
-        }
+        /* İÇERİK */
+        .content { font-size: 1.1rem; color: #334155; }
         .content p { margin-bottom: 25px; }
-        .content strong { color: var(--dark-navy); font-weight: 600; }
         
-        /* Premium Alıntı */
         blockquote {
             font-family: 'Lora', serif;
-            background: var(--gray-bg);
-            border-left: 5px solid var(--utat-blue);
-            padding: 40px;
-            margin: 45px 0;
+            border-left: 3px solid var(--utat-blue);
+            padding: 20px 30px;
+            margin: 40px 0;
             font-style: italic;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: var(--dark-navy);
-            line-height: 1.6;
-            border-radius: 0 20px 20px 0;
-            position: relative;
-        }
-        blockquote::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 5rem;
-            color: var(--utat-blue);
-            opacity: 0.1;
+            background: var(--gray-bg);
         }
 
-        /* Footer */
         footer { 
-            background: var(--dark-navy); 
-            color: white; 
+            padding: 60px 0; 
             text-align: center; 
-            padding: 80px 8% 40px; 
-            margin-top: 100px; 
+            border-top: 1px solid #eee;
+            margin-top: 80px; 
         }
-        footer p { opacity: 0.7; font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
-        
-        @media (max-width: 992px) {
-            h1 { font-size: 2.2rem; }
-            .news-img { height: 300px; }
-            .news-header { padding: 60px 0 40px; }
-            blockquote { font-size: 1.2rem; padding: 30px; }
+        footer p { font-size: 0.8rem; opacity: 0.5; font-family: 'Montserrat'; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            nav { padding: 1rem 5%; }
+            .container { margin: 20px auto; }
         }
     </style>
 </head>
@@ -159,57 +104,42 @@
 
     <nav>
         <a href="../" class="back-btn">
-            <i class="fas fa-chevron-left"></i> ANA SAYFAYA DÖN
-        </div>
+            <i class="fas fa-chevron-left"></i> ANA SAYFA
+        </a>
     </nav>
 
-    <header class="news-header">
-        <div class="container">
-            <span class="news-category">Eğitim & Kariyer</span>
-            <h1>Etkili LinkedIn Yönetiimii Semineri</h1>
-            
-            <div class="meta-info">
-                <span><i class="far fa-calendar-alt"></i> ARALIK 2026</span>
-                <span><i class="far fa-user"></i> MEDYA BİRİMİ</span>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
-        <div class="image-wrapper">
-            <img src="etkinlik1.jpg" alt="LinkedIn Etkinlik Görseli" class="news-img">
-        </div>
+        <span class="date-badge">03 ŞUBAT 2026</span>
+        <h1>LinkedIn Semineri: Dijital Kimlik ve Profesyonel Network Yönetimi</h1>
+
+        <img src="etkinlik1.jpg" alt="LinkedIn Etkinlik" class="news-img">
 
         <div class="content">
             <p>
                 <strong>Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu (UTAT)</strong>, 
-                dijital çağın hızla değişen dinamiklerine uygun olarak üyelerinin profesyonel gelişimine katkı sağlamaya devam ediyor. 
-                Topluluğumuz tarafından büyük bir ilgiyle gerçekleştirilen <strong>"LinkedIn ve Kişisel Marka Yönetimi"</strong> eğitimi, 
+                üyelerinin profesyonel gelişimine katkı sağlamaya devam ediyor. 
+                Topluluğumuz tarafından gerçekleştirilen "LinkedIn ve Kişisel Marka Yönetimi" eğitimi, 
                 öğrencilerin iş dünyasına bir adım önde başlamalarını hedefliyor.
             </p>
 
             <blockquote>
-                "Dijital dünyada var olmanın ilk kuralı, doğru bir profesyonel kimlik inşa etmektir. Profiliniz sizin adınıza konuşan bir elçidir."
+                "Profiliniz, siz uyurken bile sizin adınıza konuşan bir elçidir."
             </blockquote>
 
             <p>
-                Eğitim kapsamında, modern iş dünyasının en güçlü ağ kurma platformu olan LinkedIn’in stratejik kullanımı tüm boyutlarıyla ele alındı. 
-                Katılımcılar; kusursuz bir profil oluşturmanın ötesinde, algoritmaların nasıl çalıştığını, içerik üreticiliğinin profesyonel fırsatlara 
-                dönüşme sürecini ve etkili network kurmanın etik kurallarını uzmanlarından dinleme fırsatı buldu.
+                Eğitim kapsamında, modern iş dünyasının en güçlü ağ kurma platformu olan LinkedIn’in stratejik kullanımı ele alındı. 
+                Katılımcılar; profesyonel bir duruş sergilemenin ve doğru network kurmanın inceliklerini öğrendi.
             </p>
 
             <p>
-                Eğitimin kapanış konuşmasını yapan Topluluk Başkanımız <strong>Melih AYDOĞAN</strong>, dijital dünyada doğru konumlanmanın 
-                artık bir tercih değil zorunluluk olduğunu belirtti. Aydoğan konuşmasında; <em>"LinkedIn sadece bir dijital özgeçmiş deposu değildir; 
-                aksine yaşayan, nefes alan devasa bir kariyer ekosistemidir. Bu ekosistemde doğru adımlarla var olmak, profesyonel hayatın kapılarını 
-                henüz öğrenci sıralarındayken aralamamızı sağlar,"</em> ifadelerine yer verdi.
+                Topluluk Başkanımız <strong>Melih AYDOĞAN</strong>, dijital dünyada doğru konumlanmanın önemini vurgulayarak; 
+                <em>"LinkedIn sadece bir özgeçmiş deposu değildir; yaşayan bir kariyer ekosistemidir,"</em> ifadelerini kullandı.
             </p>
         </div>
     </div>
 
     <footer>
-        <p style="margin-bottom: 10px;">BTÜ UTAT © 2026</p>
-        <p style="font-size: 0.75rem; opacity: 0.4; font-weight: 400;">Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu - Tüm Hakları Saklıdır.</p>
+        <p>BTÜ UTAT © 2026</p>
     </footer>
 
 </body>
