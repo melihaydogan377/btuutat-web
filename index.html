@@ -21,11 +21,9 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
 
-        /* Giriş Animasyonu */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { animation: fadeInUp 0.8s ease forwards; }
 
-        /* --- NAVİGASYON --- */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -41,51 +39,62 @@
         .nav-links a:hover { color: var(--utat-blue); opacity: 1; }
         .nav-join-btn { background: var(--utat-blue); color: white !important; padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
 
-        /* --- HERO (BAŞLIK ALANI) --- */
         header { 
             height: 75vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%), url('kapak.png');
-            background-size: cover; background-attachment: fixed; color: white;
+            background-size: cover; background-position: center; background-attachment: fixed; color: white;
         }
         header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.5rem; margin-bottom: 0.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); letter-spacing: -1.5px; }
         header p { font-family: 'Lora', serif; font-size: 2rem; color: var(--soft-blue); font-weight: 400; letter-spacing: 2px; font-style: italic; }
 
-        /* --- HABERLER (OKLU KAYDIRMA) --- */
+        /* HABERLER PERFORMANS GÜNCELLEMESİ */
         .news-section { padding: 100px 10%; background: var(--gray-bg); }
         .news-container-relative { position: relative; display: flex; align-items: center; }
-        .scroll-wrapper { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; scroll-snap-type: x mandatory; scroll-behavior: smooth; width: 100%; }
+        .scroll-wrapper { 
+            display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; 
+            scrollbar-width: none; scroll-snap-type: x mandatory; scroll-behavior: smooth; 
+            width: 100%; -webkit-overflow-scrolling: touch; 
+        }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
         
         .scroll-btn {
             position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: var(--white); border: none;
-            border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--dark-navy); cursor: pointer; z-index: 10;
+            border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.08); color: var(--dark-navy); cursor: pointer; z-index: 10;
             display: flex; align-items: center; justify-content: center; transition: var(--transition);
         }
         .scroll-btn:hover { background: var(--utat-blue); color: white; transform: translateY(-50%) scale(1.1); }
         .btn-left { left: -25px; }
         .btn-right { right: -25px; }
 
-        .news-card { min-width: 380px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); scroll-snap-align: start; transition: var(--transition); }
+        .news-card { 
+            min-width: 380px; background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03); scroll-snap-align: start; 
+            transition: transform 0.3s ease; border: 1px solid rgba(0,0,0,0.05);
+            /* KASMA ENGELLEYİCİ GPU AYARLARI */
+            transform: translateZ(0); will-change: transform;
+        }
         .news-card img { width: 100%; height: 240px; object-fit: cover; }
         .news-content { padding: 30px; }
         .news-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 10px; }
         .read-more-btn { color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* --- EKİP YAPISI --- */
         .team-section { padding: 100px 8%; text-align: center; }
         .unit-container { margin-bottom: 100px; }
         .unit-header { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: white; background: var(--dark-navy); display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; letter-spacing: 2px; text-transform: uppercase; }
         .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px; justify-content: center; }
         
-        .member-card { background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        .member-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--utat-blue); }
+        .member-card { 
+            background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); 
+            border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transform: translateZ(0); /* Performans için ekip kartlarına da ekledik */
+        }
+        .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
         .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; }
         .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); margin-bottom: 5px; }
         .member-card p { font-size: 0.8rem; color: var(--utat-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- ÜYE OL PANELİ --- */
         .join-us-panel { background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
         .join-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; margin-bottom: 10px; }
         .join-btn { font-family: 'Montserrat', sans-serif; background: var(--utat-blue); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
@@ -96,13 +105,12 @@
         .social-icons a { color: white; font-size: 1.8rem; transition: var(--transition); }
         .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
 
-        /* --- MOBİL AYARLAR --- */
         @media (max-width: 992px) {
             nav { padding: 1rem 5%; justify-content: center; }
-            .nav-links { display: none !important; } /* Üst tabaka temizlendi */
+            .nav-links { display: none !important; }
             header h1 { font-size: 2.8rem; }
             header p { font-size: 1.3rem; }
-            .scroll-btn { width: 40px; height: 40px; } /* Oklar mobilde biraz küçüldü ama orada */
+            .scroll-btn { width: 45px; height: 45px; display: flex; opacity: 1; pointer-events: all; } /* Mobilde görünür yaptık */
             .btn-left { left: 5px; }
             .btn-right { right: 5px; }
             .news-card { min-width: 300px; }
@@ -139,12 +147,12 @@
             <div class="member-card" style="padding: 60px 40px;">
                 <i class="fas fa-globe-americas" style="font-size: 3.5rem; color: var(--utat-blue); margin-bottom: 25px;"></i>
                 <h3 style="font-family: 'Montserrat'; font-weight: 700;">Küresel Ticaret</h3>
-                <p style="color: #64748b; text-transform: none;">Uluslararası ticaretin dinamiklerini akademik projelerle analiz ediyoruz.</p>
+                <p style="color: #64748b;">Uluslararası ticaretin dinamiklerini akademik projelerle analiz ediyoruz.</p>
             </div>
             <div class="member-card" style="padding: 60px 40px;">
                 <i class="fas fa-network-wired" style="font-size: 3.5rem; color: var(--utat-blue); margin-bottom: 25px;"></i>
                 <h3 style="font-family: 'Montserrat'; font-weight: 700;">Profesyonel Network</h3>
-                <p style="color: #64748b; text-transform: none;">Sektör paydaşları ve mezunlarımızla sürdürülebilir bir iş ağı kuruyoruz.</p>
+                <p style="color: #64748b;">Sektör paydaşları ve mezunlarımızla sürdürülebilir bir iş ağı kuruyoruz.</p>
             </div>
         </div>
     </section>
@@ -156,7 +164,7 @@
             <button class="scroll-btn btn-left" onclick="scrollNews(-350)"><i class="fas fa-chevron-left"></i></button>
             <div class="scroll-wrapper" id="news-slider">
                 <div class="news-card">
-                    <img src="etkinlik1.jpg" alt="LinkedIn">
+                    <img src="etkinlik1.jpg" alt="LinkedIn" loading="lazy">
                     <div class="news-content">
                         <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">EĞİTİM</p>
                         <h3>Etkili LinkedIn Yönetimi Semineri</h3>
@@ -165,7 +173,7 @@
                     </div>
                 </div>
                 <div class="news-card">
-                    <img src="etkinlik2.jpg" alt="Vision Board">
+                    <img src="etkinlik2.jpg" alt="Vision Board" loading="lazy">
                     <div class="news-content">
                         <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">SOSYAL</p>
                         <h3>Vision Board Etkinliği</h3>
@@ -185,7 +193,7 @@
             <div class="unit-header">Topluluk Başkanı</div>
             <div style="max-width: 320px; margin: 0 auto;">
                 <div class="member-card">
-                    <div class="p-img"><img src="melih.png" alt="Melih AYDOĞAN"></div>
+                    <div class="p-img"><img src="melih.png" alt="Melih AYDOĞAN" loading="lazy"></div>
                     <h3>Melih AYDOĞAN</h3>
                     <p>KURUCU BAŞKAN</p>
                 </div>
@@ -195,37 +203,37 @@
         <div class="unit-container">
             <div class="unit-header">Organizasyon Birimi</div>
             <div class="team-grid">
-                <div class="member-card"><div class="p-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
-                <div class="member-card"><div class="p-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Birim Üyesi</p></div>
-                <div class="member-card"><div class="p-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Birim Üyesi</p></div>
-                <div class="member-card"><div class="p-img"><img src="sude.png"></div><h3>Sude GENÇ</h3><p>Birim Üyesi</p></div>
-                <div class="member-card"><div class="p-img"><img src="sinem.png"></div><h3>Sinem AKYILDIZ</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="yunus.png" loading="lazy"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="betul.png" loading="lazy"></div><h3>Betül AKTEPE</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="mehmet.png" loading="lazy"></div><h3>Mehmet AKDOĞAN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sude.png" loading="lazy"></div><h3>Sude GENÇ</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sinem.png" loading="lazy"></div><h3>Sinem AKYILDIZ</h3><p>Birim Üyesi</p></div>
             </div>
         </div>
 
         <div class="unit-container">
             <div class="unit-header">Dış İlişkiler Birimi</div>
             <div class="team-grid">
-                <div class="member-card"><div class="p-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
-                <div class="member-card"><div class="p-img"><img src="diana.png"></div><h3>Diana SECHERLI</h3><p>Birim Üyesi</p></div>
-                <div class="member-card"><div class="p-img"><img src="eymen.png"></div><h3>Eymen KURT</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="ferhat.png" loading="lazy"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="diana.png" loading="lazy"></div><h3>Diana SECHERLI</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="eymen.png" loading="lazy"></div><h3>Eymen KURT</h3><p>Birim Üyesi</p></div>
             </div>
         </div>
 
         <div class="unit-container">
             <div class="unit-header">Basın ve Medya Birimi</div>
             <div class="team-grid">
-                <div class="member-card"><div class="p-img"><img src="helen.png"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
-                <div class="member-card"><div class="p-img"><img src="izem.png"></div><h3>İzem ÇETİN</h3><p>Birim Üyesi</p></div>
-                <div class="member-card"><div class="p-img"><img src="amir.png"></div><h3>Amirzhan KUNAPİYA</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="helen.png" loading="lazy"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="izem.png" loading="lazy"></div><h3>İzem ÇETİN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="amir.png" loading="lazy"></div><h3>Amirzhan KUNAPİYA</h3><p>Birim Üyesi</p></div>
             </div>
         </div>
 
         <div class="unit-container">
             <div class="unit-header">Sponsorluk Birimi</div>
             <div class="team-grid">
-                <div class="member-card"><div class="p-img"><img src="yaren.png"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
-                <div class="member-card"><div class="p-img"><img src="rumeysa.png"></div><h3>Rümeysa TEMÜR</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="yaren.png" loading="lazy"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="rumeysa.png" loading="lazy"></div><h3>Rümeysa TEMÜR</h3><p>Birim Üyesi</p></div>
             </div>
         </div>
     </section>
