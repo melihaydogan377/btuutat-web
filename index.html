@@ -73,7 +73,7 @@
 
         .news-card { 
             min-width: 380px; background: white; border-radius: 20px; overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03); scroll-snap-align: start; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); scroll-snap-align: start; 
             transition: transform 0.3s ease; border: 1px solid rgba(0,0,0,0.05);
             /* KASMA ENGELLEYİCİ GPU AYARLARI */
             transform: translate3d(0, 0, 0); 
@@ -139,7 +139,7 @@
             <li><a href="#haberler">Haberler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
             <li><a href="#iletisim">İletişim</a></li>
-            <li><a href="https://forms.gle/XXXXX" target="_blank" class="nav-join-btn">Üye Ol</a></li>
+            <li><a href="https://forms.gle/68EHq6hxJV79EMTL7" target="_blank" class="nav-join-btn">Üye Ol</a></li>
         </ul>
     </nav>
 
@@ -173,7 +173,7 @@
             <button class="scroll-btn btn-left" onclick="scrollNews(-350)"><i class="fas fa-chevron-left"></i></button>
             <div class="scroll-wrapper" id="news-slider">
                 <div class="news-card">
-                    <img src="etkinlik1.jpg" alt="LinkedIn" loading="lazy">
+                    <img src="etkinlik1.jpg" alt="LinkedIn" loading="lazy" decoding="async">
                     <div class="news-content">
                         <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">EĞİTİM</p>
                         <h3>Etkili LinkedIn Yönetimi Semineri</h3>
@@ -182,7 +182,7 @@
                     </div>
                 </div>
                 <div class="news-card">
-                    <img src="etkinlik2.jpg" alt="Vision Board" loading="lazy">
+                    <img src="etkinlik2.jpg" alt="Vision Board" loading="lazy" decoding="async">
                     <div class="news-content">
                         <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">SOSYAL</p>
                         <h3>Vision Board Etkinliği</h3>
@@ -269,9 +269,13 @@
     </footer>
 
     <script>
+        let isScrolling = false;
         function scrollNews(distance) {
+            if (isScrolling) return;
+            isScrolling = true;
             const slider = document.getElementById('news-slider');
             slider.scrollBy({ left: distance, behavior: 'smooth' });
+            setTimeout(() => { isScrolling = false; }, 400);
         }
     </script>
 
