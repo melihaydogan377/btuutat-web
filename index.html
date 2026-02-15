@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- TEMEL AYARLARIN --- */
         :root {
             --dark-navy: #0f172a;
             --utat-blue: #0ea5e9;
@@ -23,21 +22,10 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
 
-        /* --- SİTENİN GÖRÜNMESİNİ SAĞLAYAN ANİMASYON SINIFLARI --- */
-        /* Başlangıçta görünmez ve biraz aşağıda */
-        .scroll-reveal { 
-            opacity: 0; 
-            transform: translateY(30px); 
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-            will-change: opacity, transform;
-        }
-        /* JS tetikleyince görünür yap */
-        .scroll-reveal.visible { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
+        /* --- YENİ: ANIMASYON SİSTEMİ (SİTEYİ GÖRÜNÜR KILAR) --- */
+        .reveal-item { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal-item.active { opacity: 1; transform: translateY(0); }
 
-        /* --- NAV & LOGO --- */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -49,49 +37,78 @@
         .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 500; font-size: 0.65rem; letter-spacing: 2px; margin-top: 3px; }
 
         .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 0.85rem; transition: var(--transition); opacity: 0.8; position: relative; }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 0.85rem; transition: var(--transition); opacity: 0.8; }
         .nav-links a:hover { color: var(--utat-blue); opacity: 1; }
-        
-        /* Hover Alt Çizgi Efekti */
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--utat-blue); transition: width 0.3s ease; }
-        .nav-links a:hover::after { width: 100%; }
-
         .nav-join-btn { background: var(--utat-blue); color: white !important; padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
 
-        /* --- HEADER --- */
         header { 
             height: 75vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 58, 138, 0.8) 100%), url('kapak.png');
             background-size: cover; background-position: center; background-attachment: fixed; color: white;
         }
-        header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.5rem; margin-bottom: 0.5rem; letter-spacing: -1.5px; }
-        header p { font-family: 'Lora', serif; font-size: 2rem; color: var(--soft-blue); letter-spacing: 2px; font-style: italic; }
+        header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.5rem; margin-bottom: 0.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); letter-spacing: -1.5px; }
+        header p { font-family: 'Lora', serif; font-size: 2rem; color: var(--soft-blue); font-weight: 400; letter-spacing: 2px; font-style: italic; }
 
-        /* --- HABERLER & KARTLAR --- */
         .news-section { padding: 100px 10%; background: var(--gray-bg); }
-        .scroll-wrapper { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; scroll-behavior: smooth; }
+        .news-container-relative { position: relative; display: flex; align-items: center; }
+        .scroll-wrapper { 
+            display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; 
+            scrollbar-width: none; scroll-snap-type: x mandatory; scroll-behavior: smooth; 
+            width: 100%; -webkit-overflow-scrolling: touch; 
+        }
         .scroll-wrapper::-webkit-scrollbar { display: none; }
         
-        .news-card, .member-card { background: white; border-radius: 20px; transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
-        .news-card:hover, .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--utat-blue); }
+        .scroll-btn {
+            position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: var(--white); border: none;
+            border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.08); color: var(--dark-navy); cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .scroll-btn:hover { background: var(--utat-blue); color: white; transform: translateY(-50%) scale(1.1); }
+        .btn-left { left: -25px; }
+        .btn-right { right: -25px; }
 
+        .news-card { 
+            min-width: 380px; background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); scroll-snap-align: start; 
+            transition: transform 0.3s ease; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .news-card img { width: 100%; height: 240px; object-fit: cover; }
+        .news-content { padding: 30px; }
+        .news-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 10px; }
+        .read-more-btn { color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+
+        .team-section { padding: 100px 8%; text-align: center; }
+        .unit-container { margin-bottom: 100px; }
+        .unit-header { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: white; background: var(--dark-navy); display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; letter-spacing: 2px; text-transform: uppercase; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px; justify-content: center; }
+        
+        .member-card { 
+            background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); 
+            border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
         .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; }
         .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); margin-bottom: 5px; }
+        .member-card p { font-size: 0.8rem; color: var(--utat-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- EKİP & PANEL --- */
-        .unit-header { font-family: 'Montserrat', sans-serif; font-weight: 700; color: white; background: var(--dark-navy); padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; text-transform: uppercase; display: inline-block; }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px; }
-
-        .join-us-panel { background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; }
-        .join-btn { background: var(--utat-blue); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
+        .join-us-panel { background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
+        .join-content h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; margin-bottom: 10px; }
+        .join-btn { font-family: 'Montserrat', sans-serif; background: var(--utat-blue); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
         .join-btn:hover { background: white; color: var(--dark-navy); }
 
-        footer { background: var(--dark-navy); color: white; padding: 60px 10%; text-align: center; }
-        
+        footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .social-icons a { color: white; font-size: 1.8rem; transition: var(--transition); }
+        .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
+
         @media (max-width: 992px) {
+            nav { padding: 1rem 5%; justify-content: center; }
+            .nav-links { display: none !important; }
             header h1 { font-size: 2.8rem; }
-            .join-us-panel { flex-direction: column; gap: 30px; text-align: center; }
+            header p { font-size: 1.3rem; }
+            .scroll-btn { width: 45px; height: 45px; display: flex; }
         }
     </style>
 </head>
@@ -106,48 +123,106 @@
             <li><a href="#vizyon">Vizyon</a></li>
             <li><a href="#haberler">Haberler</a></li>
             <li><a href="#ekip">Ekibimiz</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
             <li><a href="https://forms.gle/68EHq6hxJV79EMTL7" target="_blank" class="nav-join-btn">Üye Ol</a></li>
         </ul>
     </nav>
 
     <header>
-        <div class="scroll-reveal">
+        <div>
             <h1>BTÜ UTAT</h1>
             <p>"Ticaretin Rotasını Çiziyoruz"</p>
         </div>
     </header>
 
-    <section id="vizyon" class="scroll-reveal" style="padding: 100px 10%; text-align: center;">
-        <h2 style="font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 50px;">Stratejik Vizyonumuz</h2>
+    <section id="vizyon" style="padding: 100px 10%; text-align: center;">
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 50px; letter-spacing: -1px;">Stratejik Vizyonumuz</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
-            <div class="member-card" style="padding: 40px;">
-                <i class="fas fa-globe-americas" style="font-size: 3rem; color: var(--utat-blue); margin-bottom: 20px;"></i>
-                <h3>Küresel Ticaret</h3>
-                <p>Uluslararası ticaretin dinamiklerini akademik projelerle analiz ediyoruz.</p>
+            <div class="member-card">
+                <i class="fas fa-globe-americas" style="font-size: 3.5rem; color: var(--utat-blue); margin-bottom: 25px;"></i>
+                <h3 style="font-family: 'Montserrat'; font-weight: 700;">Küresel Ticaret</h3>
+                <p style="color: #64748b;">Uluslararası ticaretin dinamiklerini akademik projelerle analiz ediyoruz.</p>
             </div>
-            <div class="member-card" style="padding: 40px;">
-                <i class="fas fa-network-wired" style="font-size: 3rem; color: var(--utat-blue); margin-bottom: 20px;"></i>
-                <h3>Profesyonel Network</h3>
-                <p>Sektör paydaşları ve mezunlarımızla sürdürülebilir bir iş ağı kuruyoruz.</p>
+            <div class="member-card">
+                <i class="fas fa-network-wired" style="font-size: 3.5rem; color: var(--utat-blue); margin-bottom: 25px;"></i>
+                <h3 style="font-family: 'Montserrat'; font-weight: 700;">Profesyonel Network</h3>
+                <p style="color: #64748b;">Sektör paydaşları ve mezunlarımızla sürdürülebilir bir iş ağı kuruyoruz.</p>
             </div>
         </div>
     </section>
 
-    <section id="ekip" class="team-section scroll-reveal">
-        <h2 style="font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 60px; text-align: center;">Yönetim Kurulu</h2>
-        <div class="unit-container" style="text-align: center;">
-            <div class="unit-header">Topluluk Başkanı</div>
-            <div style="max-width: 320px; margin: 0 auto;">
-                <div class="member-card">
-                    <div class="p-img"><img src="melih.png" alt="Melih AYDOĞAN"></div>
-                    <h3>Melih AYDOĞAN</h3>
-                    <p>KURUCU BAŞKAN</p>
+    <section id="haberler" class="news-section">
+        <h2 style="font-family: 'Montserrat'; font-size: 3rem; text-align: center; margin-bottom: 10px; letter-spacing: -1px;">Haberler & Duyurular</h2>
+        <div class="news-container-relative">
+            <button class="scroll-btn btn-left" onclick="scrollNews(-350)"><i class="fas fa-chevron-left"></i></button>
+            <div class="scroll-wrapper" id="news-slider">
+                <div class="news-card">
+                    <img src="etkinlik1.jpg" alt="LinkedIn">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem;">EĞİTİM</p>
+                        <h3>Etkili LinkedIn Yönetimi Semineri</h3>
+                        <p>Profesyonel ağınızı nasıl optimize edersiniz?</p>
+                        <a href="./linkedin.egitimi/" class="read-more-btn">Devamını Oku →</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <img src="etkinlik2.jpg" alt="Vision Board">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem;">SOSYAL</p>
+                        <h3>Vision Board Etkinliği</h3>
+                        <p>Gelecek hedeflerimizi stratejik olarak planladık.</p>
+                        <a href="haber2.html" class="read-more-btn">Devamını Oku →</a>
+                    </div>
                 </div>
             </div>
+            <button class="scroll-btn btn-right" onclick="scrollNews(350)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
-    <section id="uye-ol" class="scroll-reveal">
+    <section id="ekip" class="team-section">
+        <h2 style="font-family: 'Montserrat'; font-size: 3.5rem; margin-bottom: 80px;">Yönetim Kurulu</h2>
+        <div class="unit-container">
+            <div class="unit-header">Topluluk Başkanı</div>
+            <div style="max-width: 320px; margin: 0 auto;">
+                <div class="member-card"><div class="p-img"><img src="melih.png"></div><h3>Melih AYDOĞAN</h3><p>KURUCU BAŞKAN</p></div>
+            </div>
+        </div>
+        <div class="unit-container">
+            <div class="unit-header">Organizasyon Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="yunus.png"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="betul.png"></div><h3>Betül AKTEPE</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="mehmet.png"></div><h3>Mehmet AKDOĞAN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sude.png"></div><h3>Sude GENÇ</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="sinem.png"></div><h3>Sinem AKYILDIZ</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+        <div class="unit-container">
+            <div class="unit-header">Dış İlişkiler Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="ferhat.png"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="diana.png"></div><h3>Diana SECHERLI</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="eymen.png"></div><h3>Eymen KURT</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+        <div class="unit-container">
+            <div class="unit-header">Basın ve Medya Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="helen.png"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="izem.png"></div><h3>İzem ÇETİN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="amir.png"></div><h3>Amirzhan KUNAPİYA</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+        <div class="unit-container">
+            <div class="unit-header">Sponsorluk Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="yaren.png"></div><h3>Yaren TUNCER</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="rumeysa.png"></div><h3>Rümeysa TEMÜR</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="uye-ol">
         <div class="join-us-panel">
             <div class="join-content">
                 <h2>Geleceğin Ticaretine Yön Verelim</h2>
@@ -157,34 +232,35 @@
         </div>
     </section>
 
-    <footer>
-        <p>© 2026 BTÜ UTAT - Tüm Hakları Saklıdır.</p>
+    <footer id="iletisim">
+        <h2 style="font-family: 'Montserrat'; margin-bottom: 30px;">BTÜ UTAT</h2>
+        <div class="social-icons">
+            <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <a href="mailto:btuutat@gmail.com" class="footer-mail">btuutat@gmail.com</a>
+        <div style="margin-top: 50px; font-size: 0.8rem; opacity: 0.5;">© 2026 BTÜ UTAT - Tüm Hakları Saklıdır.</div>
     </footer>
 
     <script>
-        // 1. Sayfayı kaydırdıkça öğelerin belirmesini sağlayan sistem
+        // Sayfa kaydırıldığında öğeleri tetikleyen kod
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible'); // Ekrana girince görünür yap
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('active'); }
             });
-        }, { threshold: 0.1 }); // Öğenin %10'u göründüğünde başla
+        }, { threshold: 0.1 });
 
-        // Sayfa hazır olduğunda çalıştır
         document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.scroll-reveal');
-            reveals.forEach(el => observer.observe(el));
+            const items = document.querySelectorAll('.member-card, .news-card, .unit-container, .join-us-panel');
+            items.forEach(item => {
+                item.classList.add('reveal-item');
+                observer.observe(item);
+            });
         });
 
-        // 2. Haberler kaydırma fonksiyonun
-        let isScrolling = false;
         function scrollNews(distance) {
-            if (isScrolling) return;
-            isScrolling = true;
             const slider = document.getElementById('news-slider');
-            if(slider) slider.scrollBy({ left: distance, behavior: 'smooth' });
-            setTimeout(() => { isScrolling = false; }, 400);
+            slider.scrollBy({ left: distance, behavior: 'smooth' });
         }
     </script>
 </body>
