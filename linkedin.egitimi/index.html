@@ -3,147 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkedIn Semineri | BTÜ UTAT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Lora:ital,wght@0,400;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Haber | BTÜ UTAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --dark-navy: #0f172a;
-            --utat-blue: #0ea5e9;
-            --white: #ffffff;
-            --gray-bg: #f8fafc;
-            --text-gray: #475569;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.8; color: var(--text-gray); background-color: var(--white); overflow-x: hidden; }
-
-        /* MİNİMAL NAV */
-        nav { 
-            padding: 1rem 8%; 
-            background: var(--white);
-            display: flex; 
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .back-btn { 
-            text-decoration: none; 
-            color: var(--dark-navy); 
-            font-weight: 700; 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-            letter-spacing: 1px;
-        }
-
-        /* MİNİMAL İÇERİK */
-        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-        
-        .date-badge { 
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem; 
-            color: var(--utat-blue); 
-            font-weight: 700; 
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        h1 { 
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 2.2rem; 
-            line-height: 1.2; 
-            margin-bottom: 25px; 
-            color: var(--dark-navy); 
-            letter-spacing: -1px;
-        }
-
-        /* MOBİLDE OTURMAYAN RESİM İÇİN KESİN ÇÖZÜM */
-        .news-img { 
-            width: 100%; 
-            height: auto; /* Yüksekliği serbest bıraktık, taşma yapmaz */
-            aspect-ratio: 16 / 9; /* Her cihazda sinematik format */
-            border-radius: 15px; 
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            object-fit: cover; /* Resmin en güzel yerini gösterir */
-        }
-
-        .content { font-size: 1.1rem; color: #334155; text-align: left; }
-        .content p { margin-bottom: 20px; }
-        
-        blockquote {
-            font-family: 'Lora', serif;
-            border-left: 4px solid var(--utat-blue);
-            padding: 20px 25px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--dark-navy);
-            background: var(--gray-bg);
-            border-radius: 0 10px 10px 0;
-        }
-
-        footer { 
-            padding: 40px 0; 
-            text-align: center; 
-            border-top: 1px solid #eee;
-            margin-top: 60px; 
-        }
-        footer p { font-size: 0.75rem; opacity: 0.5; font-family: 'Montserrat'; }
-
-        /* MOBİL ÖZEL AYARLAR */
-        @media (max-width: 768px) {
-            h1 { font-size: 1.7rem; }
-            nav { padding: 1rem 5%; }
-            .container { margin: 15px auto; }
-            .news-img { border-radius: 10px; margin-bottom: 20px; }
-        }
+        body { font-family: 'Poppins', sans-serif; background: #f8fafc; color: #0f172a; padding: 40px 10%; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .back-btn { display: inline-block; margin-bottom: 30px; color: #0ea5e9; text-decoration: none; font-weight: 600; }
+        .haber-img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 30px; }
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
+        #haber-metin { white-space: pre-wrap; color: #475569; font-size: 1.1rem; text-align: justify; }
     </style>
 </head>
 <body>
-
-    <nav>
-        <a href="../" class="back-btn">
-            <i class="fas fa-chevron-left"></i> ANA SAYFA
-        </a>
-    </nav>
-
     <div class="container">
-        <span class="date-badge">03 ŞUBAT 2026</span>
-        <h1>LinkedIn Semineri: Dijital Kimlik ve Profesyonel Network Yönetimi</h1>
-
-        <img src="etkinlik1.jpg" alt="LinkedIn Etkinlik" class="news-img">
-
-        <div class="content">
-            <p>
-                <strong>Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu (UTAT)</strong>, 
-                üyelerinin profesyonel gelişimine katkı sağlamaya devam ediyor. 
-            </p>
-
-            <blockquote>
-                "Profiliniz, siz uyurken bile sizin adınıza konuşan bir elçidir."
-            </blockquote>
-
-            <p>
-                Eğitim kapsamında, LinkedIn’in stratejik kullanımı ele alındı. 
-                Katılımcılar; profesyonel duruş sergilemenin ve network kurmanın inceliklerini öğrendi.
-            </p>
-
-            <p>
-                Topluluk Başkanımız <strong>Melih AYDOĞAN</strong>, dijital dünyada doğru konumlanmanın önemini vurguladı.
-            </p>
-        </div>
+        <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+        <img id="haber-resim" src="" class="haber-img">
+        <h1 id="haber-baslik">Yükleniyor...</h1>
+        <div id="haber-metin"></div>
     </div>
 
-    <footer>
-        <p>BTÜ UTAT © 2026</p>
-    </footer>
+    <script src="../haberler.js"></script>
+    <script>
+        const pathArray = window.location.pathname.split('/');
+        const folderName = pathArray[pathArray.length - 2] || pathArray[pathArray.length - 1];
+        const haber = haberHavuzu[folderName];
 
+        if (haber) {
+            document.getElementById('haber-baslik').innerText = haber.baslik;
+            document.getElementById('haber-metin').innerText = haber.metin;
+            document.getElementById('haber-resim').src = "../" + haber.resim;
+            document.title = haber.baslik + " | BTÜ UTAT";
+        }
+    </script>
 </body>
 </html>
