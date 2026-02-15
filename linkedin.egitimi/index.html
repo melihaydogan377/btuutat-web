@@ -3,108 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haber: LinkedIn ve Dijital Kimlik Yönetimi | BTÜ UTAT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>LinkedIn Semineri | BTÜ UTAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --news-red: #bb1919; /* Haber kanalı vurgu rengi */
-            --dark-black: #121212;
-            --text-main: #222222;
-            --border-color: #e0e0e0;
+            --utat-blue: #0ea5e9;
+            --dark-navy: #0f172a;
+            --text-main: #334155;
+            --border-light: #f1f5f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: var(--text-main); line-height: 1.6; }
+        body { font-family: 'Poppins', sans-serif; background-color: #ffffff; color: var(--text-main); line-height: 1.8; }
 
-        /* Üst Menü / Gazete Logosu Tarzı */
-        header { 
-            border-bottom: 4px solid var(--dark-black);
-            padding: 20px 8%;
-            text-align: center;
-            background: #fff;
+        /* MİNİMAL NAV */
+        nav { 
+            padding: 1.5rem 8%; 
+            display: flex; 
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
-        .site-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--dark-black); text-decoration: none; letter-spacing: 2px; }
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--dark-navy); 
+            font-weight: 700; 
+            font-size: 0.8rem;
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        /* Haber Navigasyonu */
-        nav { padding: 10px 8%; border-bottom: 1px solid var(--border-color); display: flex; gap: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
-        .back-link { text-decoration: none; color: var(--news-red); }
-
-        /* Haber Konteyneri */
-        .main-container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        /* HABER KONTEYNERI */
+        .container { max-width: 850px; margin: 20px auto; padding: 0 25px; }
         
-        /* Haber Kategorisi ve Tarih */
-        .category-tag { background: var(--news-red); color: white; padding: 4px 12px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
-        .news-date { display: block; font-size: 0.85rem; color: #757575; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        /* MODERN TARİH BADGE */
+        .date-badge { 
+            font-size: 0.75rem; 
+            color: var(--utat-blue); 
+            font-weight: 700; 
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            display: block;
+            text-transform: uppercase;
+        }
 
-        /* Başlık - Playfair Display ile daha resmi */
-        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; line-height: 1.1; margin-bottom: 25px; color: var(--dark-black); font-weight: 700; }
+        /* MODERN & RESMİ BAŞLIK */
+        h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; 
+            line-height: 1.2; 
+            margin-bottom: 30px; 
+            color: var(--dark-navy); 
+            font-weight: 700;
+        }
 
-        /* Haber Görseli */
-        .hero-img-wrapper { margin-bottom: 35px; }
-        .news-img { width: 100%; height: auto; border-radius: 2px; }
-        .img-caption { font-size: 0.8rem; color: #666; margin-top: 8px; border-left: 2px solid var(--news-red); padding-left: 10px; font-style: italic; }
+        /* HABER GÖRSELİ */
+        .news-img-wrapper { margin-bottom: 35px; }
+        .news-img { 
+            width: 100%; 
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px; 
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
 
-        /* Haber İçeriği - Objektif ve Temiz */
-        .article-body { font-size: 1.15rem; color: var(--text-main); }
-        .article-body p { margin-bottom: 25px; }
-        .article-body strong { color: var(--dark-black); }
+        /* HABER METNİ (OBJEKTİF DİL) */
+        .article-content { font-size: 1.15rem; color: #475569; text-align: justify; }
+        .article-content p { margin-bottom: 25px; }
+        .article-content strong { color: var(--dark-navy); font-weight: 600; }
 
-        /* Alt Bilgi */
-        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: #999; }
+        /* FOOTER SADELEŞTİ */
+        footer { 
+            padding: 50px 0; 
+            text-align: center; 
+            border-top: 1px solid var(--border-light);
+            margin-top: 60px; 
+        }
+        footer p { font-size: 0.8rem; color: #94a3b8; font-weight: 500; letter-spacing: 1px; }
 
-        /* Mobil Düzenleme */
+        /* MOBİL UYUM */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            header { padding: 15px 5%; }
-            .main-container { margin: 20px auto; }
+            h1 { font-size: 1.8rem; }
+            .container { margin: 10px auto; }
+            nav { padding: 1rem 5%; }
+            .article-content { font-size: 1.05rem; text-align: left; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="/" class="site-logo">BTÜ UTAT NEWS</a>
-    </header>
-
     <nav>
-        <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> ANA SAYFA</a>
-        <span style="color: #ddd;">|</span>
-        <span>EKONOMİ & TİCARET</span>
+        <a href="../" class="back-btn">
+            <i class="fas fa-arrow-left"></i> ANA SAYFA
+        </a>
     </nav>
 
-    <div class="main-container">
-        <div class="category-tag">Akademi / Kariyer</div>
-        <h1>BTÜ UTAT, LinkedIn Semineri ile Dijital Kimlik Yönetimini Masaya Yatırdı</h1>
+    <div class="container">
+        <span class="date-badge">15 ARALIK 2025</span>
         
-        <span class="news-date">Yayınlanma: 15 Aralık 2025 | Güncelleme: 16:30</span>
+        <h1>BTÜ UTAT, LinkedIn Semineri ile Dijital Kimlik Yönetimini Masaya Yatırdı</h1>
 
-        <div class="hero-img-wrapper">
+        <div class="news-img-wrapper">
             <img src="etkinlik1.jpg" alt="LinkedIn Eğitim Etkinliği" class="news-img">
-            <p class="img-caption">Bursa Teknik Üniversitesi bünyesinde gerçekleştirilen LinkedIn seminerinden bir kare.</p>
         </div>
 
-        <div class="article-body">
+        <div class="article-content">
             <p>
-                <strong>BURSA -</strong> Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu (UTAT), dijitalleşen iş dünyasında profesyonel ağ yönetiminin önemini vurgulayan kapsamlı bir seminer düzenledi. 15 Aralık 2025 tarihinde gerçekleşen etkinlikte, LinkedIn platformunun stratejik kullanım yöntemleri ele alındı.
+                <strong>BURSA -</strong> Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırmaları Topluluğu (UTAT), dijitalleşen iş dünyasında profesyonel ağ yönetiminin önemini vurgulayan kapsamlı bir seminer düzenledi. Gerçekleşen etkinlikte, LinkedIn platformunun stratejik kullanım yöntemleri ve kariyer planlamasındaki rolü ele alındı.
             </p>
 
             <p>
-                Seminerde, katılımcılara profesyonel dijital kimlik oluşturma, kişisel marka yönetimi ve doğru ağ kurma teknikleri hakkında teknik detaylar aktarıldı. Özellikle "Profil Optimizasyonu" ve "Dijital Elçilik" başlıkları altında, platformun kariyer yolculuğundaki kritik rolü üzerinde duruldu.
+                Seminer süresince katılımcılara profesyonel dijital kimlik oluşturma, kişisel marka yönetimi ve nitelikli ağ kurma teknikleri hakkında teknik detaylar aktarıldı. Özellikle profil optimizasyonu süreçlerinin, iş dünyasındaki görünürlük üzerindeki etkisi örnek vaka analizleriyle incelendi.
             </p>
 
             <p>
-                Etkinlikte sunum yapan <strong>Melih AYDOĞAN</strong>, dijital dünyada doğru konumlanmanın sadece bir avantaj değil, profesyonel bir zorunluluk olduğunu ifade etti. Seminerin ardından katılımcıların soruları yanıtlanırken, platform üzerinden gerçekleştirilen gerçek zamanlı örnek analizlerle teorik bilgiler pratiğe dönüştürüldü.
+                Etkinlikte sunum yapan <strong>Melih AYDOĞAN</strong>, dijital mecralarda doğru konumlanmanın profesyonel bir zorunluluk haline geldiğini ifade etti. Program, platform üzerinden gerçekleştirilen gerçek zamanlı uygulama analizleri ve soru-cevap bölümüyle sona erdi.
             </p>
 
             <p>
-                UTAT yetkilileri, topluluk üyelerinin sektörel ve dijital yetkinliklerini artırmaya yönelik bu tür akademik ve teknik seminerlerin periyodik olarak devam edeceğini kaydetti.
+                UTAT yetkilileri, üyelerin sektörel ve dijital yetkinliklerini artırmaya yönelik teknik eğitimlerin önümüzdeki dönemlerde de periyodik olarak devam edeceğini bildirdi.
             </p>
         </div>
     </div>
 
     <footer>
-        <p>BTÜ UTAT Haber Ajansı © 2026 | Tüm Hakları Saklıdır.</p>
+        <p>BTÜ UTAT © 2026</p>
     </footer>
 
 </body>
