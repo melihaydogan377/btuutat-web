@@ -1,17 +1,14 @@
 const haberHavuzu = {
-    "linkedin.egitimi": {
+    "linkedin-egitimi": {
         baslik: "Etkili LinkedIn Yönetimi Semineri",
         resim: "etkinlik1.jpg",
-        metin: `Buraya istediğin kadar uzun metin yapıştırabilirsin. 
-        Satır atlaman veya emoji kullanman sorun olmaz.
-        
-        Profesyonel ağımızı nasıl optimize edeceğimizi konuştuk. 
-        Katılım sağlayan herkese teşekkürler! 🚀`
+        metin: `Profesyonel ağınızı nasıl optimize edeceğinizi konuştuk. 
+        Harika bir katılım oldu, herkese teşekkürler! 🚀`
     },
-    "vision.board": {
+    "vizyon-board": {
         baslik: "Vision Board Etkinliği",
         resim: "etkinlik2.jpg",
-        metin: `Gelecek hedeflerimizi planladığımız harika bir gündü.
-        Vizyon panolarımızı oluşturduk ve stratejilerimizi belirledik.`
+        metin: `Gelecek hedeflerimizi planladığımız harika bir gündü. 
+        Stratejilerimizi belirledik ve panolarımızı oluşturduk.`
     }
 };
