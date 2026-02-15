@@ -1,5 +1,5 @@
 const haberHavuzu = {
-    "linkedin": {
+    "linkedin.egitimi": {
         baslik: "Etkili LinkedIn Yönetimi Semineri",
         resim: "etkinlik1.jpg",
         metin: `Buraya istediğin kadar uzun metin yapıştırabilirsin. 
@@ -8,7 +8,7 @@ const haberHavuzu = {
         Profesyonel ağımızı nasıl optimize edeceğimizi konuştuk. 
         Katılım sağlayan herkese teşekkürler! 🚀`
     },
-    "vision-board": {
+    "vision.board": {
         baslik: "Vision Board Etkinliği",
         resim: "etkinlik2.jpg",
         metin: `Gelecek hedeflerimizi planladığımız harika bir gündü.
