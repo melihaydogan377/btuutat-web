@@ -8,32 +8,45 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background: #f8fafc; color: #0f172a; padding: 40px 10%; line-height: 1.8; }
         .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .back-btn { display: inline-block; margin-bottom: 30px; color: #0ea5e9; text-decoration: none; font-weight: 600; }
-        .haber-img { width: 100%; height: 400px; object-fit: cover; border-radius: 20px; margin-bottom: 30px; }
-        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.2; }
-        #haber-metin { white-space: pre-wrap; color: #475569; font-size: 1.1rem; text-align: justify; }
+        .back-btn { display: inline-block; margin-bottom: 30px; color: #0ea5e9; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .back-btn:hover { color: #0f172a; }
+        .haber-img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; margin-bottom: 30px; display: block; }
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; margin-bottom: 20px; line-height: 1.2; color: #0f172a; }
+        #haber-metin { white-space: pre-wrap; color: #475569; font-size: 1.15rem; text-align: justify; border-top: 1px solid #f1f5f9; padding-top: 25px; }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
-        <img id="haber-resim" src="" class="haber-img">
+        <img id="haber-resim" src="" class="haber-img" alt="Haber Görseli">
         <h1 id="haber-baslik">Yükleniyor...</h1>
-        <div id="haber-metin"></div>
+        <div id="haber-metin">İçerik hazırlanıyor, lütfen bekleyin...</div>
     </div>
 
     <script src="../haberler.js"></script>
     <script>
-        const pathArray = window.location.pathname.split('/');
-        const folderName = pathArray[pathArray.length - 2] || pathArray[pathArray.length - 1];
-        const haber = haberHavuzu[folderName];
+        document.addEventListener("DOMContentLoaded", function() {
+            // URL'den klasör ismini çekme (Profesyonel URL için)
+            const pathParts = window.location.pathname.split('/').filter(p => p !== "");
+            let folderName = pathParts[pathParts.length - 1];
+            
+            // Eğer dosya ismiyle açıldıysa klasör ismine odaklan
+            if (folderName && folderName.includes('.html')) {
+                folderName = pathParts[pathParts.length - 2];
+            }
 
-        if (haber) {
-            document.getElementById('haber-baslik').innerText = haber.baslik;
-            document.getElementById('haber-metin').innerText = haber.metin;
-            document.getElementById('haber-resim').src = "../" + haber.resim;
-            document.title = haber.baslik + " | BTÜ UTAT";
-        }
+            if (typeof haberHavuzu !== 'undefined' && haberHavuzu[folderName]) {
+                const haber = haberHavuzu[folderName];
+                document.getElementById('haber-baslik').innerText = haber.baslik;
+                document.getElementById('haber-metin').innerText = haber.metin;
+                document.getElementById('haber-resim').src = "../" + haber.resim;
+                document.title = haber.baslik + " | BTÜ UTAT";
+            } else {
+                document.getElementById('haber-baslik').innerText = "Haber Bulunamadı";
+                document.getElementById('haber-metin').innerText = "Bu haber henüz eklenmemiş veya bir isim hatası var.";
+                console.error("Beklenen anahtar:", folderName);
+            }
+        });
     </script>
 </body>
 </html>
