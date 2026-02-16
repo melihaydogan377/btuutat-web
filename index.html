@@ -49,14 +49,12 @@
         header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.5rem; margin-bottom: 0.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); letter-spacing: -1.5px; }
         header p { font-family: 'Lora', serif; font-size: 2rem; color: var(--soft-blue); font-weight: 400; letter-spacing: 2px; font-style: italic; }
 
-        /* HABERLER PERFORMANS GÜNCELLEMESİ */
         .news-section { padding: 100px 10%; background: var(--gray-bg); }
         .news-container-relative { position: relative; display: flex; align-items: center; }
         .scroll-wrapper { 
             display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; 
             scrollbar-width: none; scroll-snap-type: x mandatory; scroll-behavior: smooth; 
             width: 100%; -webkit-overflow-scrolling: touch; 
-            /* PERFORMANS */
             transform: translate3d(0, 0, 0);
             will-change: transform;
         }
@@ -75,7 +73,6 @@
             min-width: 380px; background: white; border-radius: 20px; overflow: hidden; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.05); scroll-snap-align: start; 
             transition: transform 0.3s ease; border: 1px solid rgba(0,0,0,0.05);
-            /* KASMA ENGELLEYİCİ GPU AYARLARI */
             transform: translate3d(0, 0, 0); 
             will-change: transform;
             backface-visibility: hidden;
@@ -93,12 +90,11 @@
         .member-card { 
             background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); 
             border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            /* PERFORMANS */
             transform: translate3d(0, 0, 0); 
             will-change: transform;
             backface-visibility: hidden;
         }
-        .member-card:hover { transform: translateY(-10px) translate3d(0, 0, 0); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
+        .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
         .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; }
         .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); margin-bottom: 5px; }
@@ -119,7 +115,7 @@
             .nav-links { display: none !important; }
             header h1 { font-size: 2.8rem; }
             header p { font-size: 1.3rem; }
-            .scroll-btn { width: 45px; height: 45px; display: flex; opacity: 1; pointer-events: all; } /* Mobilde görünür yaptık */
+            .scroll-btn { width: 45px; height: 45px; display: flex; opacity: 1; pointer-events: all; }
             .btn-left { left: 5px; }
             .btn-right { right: 5px; }
             .news-card { min-width: 300px; }
@@ -168,28 +164,61 @@
 
     <section id="haberler" class="news-section">
         <h2 style="font-family: 'Montserrat'; font-size: 3rem; text-align: center; margin-bottom: 10px; letter-spacing: -1px;">Haberler & Duyurular</h2>
-        <p style="text-align: center; font-family: 'Lora'; font-style: italic; opacity: 0.6; margin-bottom: 50px;">(Kaydırarak inceleyebilirsiniz.)</p>
+        <p style="text-align: center; font-family: 'Lora'; font-style: italic; opacity: 0.6; margin-bottom: 50px;">(En yeni haberlerimiz. Kaydırarak inceleyebilirsiniz.)</p>
         <div class="news-container-relative">
             <button class="scroll-btn btn-left" onclick="scrollNews(-350)"><i class="fas fa-chevron-left"></i></button>
             <div class="scroll-wrapper" id="news-slider">
+                
+                <div class="news-card">
+                    <img src="buzpateni.jpg" alt="Buz Pateni Etkinliği" loading="lazy" decoding="async">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">SOSYAL</p>
+                        <h3>Buz Pateni Etkinliği</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Ekip ruhunu güçlendirmek için pistte bir araya geldik.</p>
+                        <a href="./buz.pateni/" class="read-more-btn">Detaylar →</a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="dekanziyareti.jpg" alt="Dekan Ziyareti" loading="lazy" decoding="async">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">KURUMSAL</p>
+                        <h3>Fakülte Dekanımıza Ziyaret</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Yeni dönem projelerimizi ve hedeflerimizi paylaştık.</p>
+                        <a href="./dekan.ziyareti/" class="read-more-btn">Detaylar →</a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="bolumbaskanıziyareti.jpg" alt="Bölüm Başkanı Ziyareti" loading="lazy" decoding="async">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">KURUMSAL</p>
+                        <h3>Bölüm Başkanlığı Ziyaretimiz</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Akademik süreçler üzerine istişarelerde bulunduk.</p>
+                        <a href="./bolum.baskanı.ziyareti/" class="read-more-btn">Detaylar →</a>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="etkinlik2.jpg" alt="Vision Board" loading="lazy" decoding="async">
+                    <div class="news-content">
+                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">STRATEJİ</p>
+                        <h3>Vision Board Etkinliği</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Gelecek hedeflerimizi stratejik olarak planladık.</p>
+                        <a href="./vision.board/" class="read-more-btn">Detaylar →</a>
+                    </div>
+                </div>
+
                 <div class="news-card">
                     <img src="etkinlik1.jpg" alt="LinkedIn" loading="lazy" decoding="async">
                     <div class="news-content">
                         <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">EĞİTİM</p>
-                        <h3>Etkili LinkedIn Yönetimi Semineri</h3>
+                        <h3>Etkili LinkedIn Yönetimi</h3>
                         <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Profesyonel ağınızı nasıl optimize edersiniz?</p>
-                        <a href="./linkedin.egitimi/" class="read-more-btn">Devamını Oku →</a>
+                        <a href="./linkedin.egitimi/" class="read-more-btn">Detaylar →</a>
                     </div>
                 </div>
-                <div class="news-card">
-                    <img src="etkinlik2.jpg" alt="Vision Board" loading="lazy" decoding="async">
-                    <div class="news-content">
-                        <p style="color: var(--utat-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; font-family: 'Montserrat'; letter-spacing: 1px;">SOSYAL</p>
-                        <h3>Vision Board Etkinliği</h3>
-                        <p style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 15px;">Gelecek hedeflerimizi stratejik olarak planladık.</p>
-                        <a href="./vision.board/" class="read-more-btn">Devamını Oku →</a>
-                    </div>
-                </div>
+
             </div>
             <button class="scroll-btn btn-right" onclick="scrollNews(350)"><i class="fas fa-chevron-right"></i></button>
         </div>
