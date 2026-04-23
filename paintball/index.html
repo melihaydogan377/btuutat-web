@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paintball Etkinliği | BTÜ UTAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --btso-blue: #004a89; /* Kurumsal mavi tonu */
+            --text-dark: #222222;
+            --text-gray: #555555;
+            --line-color: #dddddd;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #fcfcfc; color: var(--text-dark); line-height: 1.7; }
+
+        /* ÜST NAVİGASYON - SADE VE CİDDİ */
+        nav { 
+            background: #fff;
+            border-bottom: 1px solid var(--line-color);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--btso-blue); 
+            font-weight: 700; 
+            font-size: 0.85rem;
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+            text-transform: uppercase;
+        }
+
+        /* ANA KONTEYNER */
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 40px; border: 1px solid var(--line-color); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        
+        /* KATEGORİ VE TARİH */
+        .meta-info { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 0.85rem; color: var(--text-gray); border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .category { color: var(--btso-blue); font-weight: 700; text-transform: uppercase; }
+
+        /* BAŞLIK - BTSO TARZI SERİF FONT */
+        h1 { 
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 2.5rem; 
+            line-height: 1.2; 
+            margin-bottom: 25px; 
+            color: #000; 
+            font-weight: 700;
+        }
+
+        /* GÖRSEL */
+        .news-img { 
+            width: 100%; 
+            height: auto;
+            border-radius: 2px; 
+            margin-bottom: 30px;
+        }
+
+        /* HABER METNİ - OBJEKTİF VE GAZETE DİLİ */
+        .article-content { font-size: 1.15rem; color: var(--text-dark); text-align: left; }
+        .article-content p { margin-bottom: 20px; }
+        .article-content strong { color: #000; font-weight: 700; }
+
+        /* ALT BİLGİ */
+        footer { 
+            padding: 30px 0; 
+            text-align: center; 
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* MOBİL AYARLAR */
+        @media (max-width: 768px) {
+            .container { padding: 20px; margin: 0; border: none; }
+            h1 { font-size: 1.8rem; }
+            .article-content { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../" class="back-btn"><i class="fas fa-angle-left"></i> ANA SAYFA</a>
+        <div style="font-weight: 700; color: var(--btso-blue); font-size: 0.9rem;">BTÜ UTAT</div>
+    </nav>
+
+    <div class="container">
+        <div class="meta-info">
+            <span class="category">SOSYAL ETKİNLİK</span>
+            <span>|</span>
+            <span>23 Nisan 2026</span>
+        </div>
+        
+        <h1>BTÜ UTAT Ekibi Sahada: Adrenalin Dolu Paintball Etkinliği!</h1>
+
+        <img src="paintball.jpg" alt="Paintball Etkinliği" class="news-img">
+
+        <div class="article-content">
+            <p>
+                Bursa Teknik Üniversitesi Uluslararası Ticaret Araştırma Topluluğu (BTÜ UTAT), yoğun akademik ve profesyonel takvimine kısa bir mola vererek üyeleriyle birlikte heyecan dolu bir Paintball etkinliği gerçekleştirdi. Ekip ruhunu güçlendirmek ve topluluk içi bağları pekiştirmek amacıyla düzenlenen bu etkinlikte, strateji ve hız ön plandaydı.
+            </p>
+
+            <p>
+                Bursa’da gerçekleştirilen buluşmada, katılımcılar takımlara ayrılarak saha içerisinde kıyasıya bir mücadele verdi. Sadece fiziksel aktivitenin değil, aynı zamanda stratejik düşünme ve takım koordinasyonunun da test edildiği bu anlar, topluluğun saha dışındaki uyumunu bir kez daha kanıtladı.
+            </p>
+
+            <p><strong>Strateji ve Takım Ruhu</strong></p>
+            <p>
+                Oyun süresince sergilenen yüksek enerji ve centilmence mücadele, günün sonunda yerini keyifli bir sohbete bıraktı. Üyelerimizin motivasyonunu artırmaya yönelik düzenlenen bu tür sosyal faaliyetler, topluluk içi iletişimin en güçlü halkalarından birini oluşturmaya devam ediyor.
+            </p>
+
+            <p><strong>Birlikte Daha Güçlüyüz</strong></p>
+            <p>
+                Etkinliğe katılım sağlayan ve sahada ter döken tüm üyelerimize teşekkür ederiz. BTÜ UTAT ailesi olarak, sadece teknik ve akademik alanlarda değil, sosyal hayatın her noktasında güçlü bir ekip olmayı sürdüreceğiz.
+            </p>
+            
+            <p>
+                Bir sonraki maceramızda görüşmek üzere! Güncel duyurularımız için bizi takip etmeye devam edin.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>BTÜ UTAT © 2026</p>
+    </footer>
+
+</body>
+</html>
