@@ -4,11 +4,11 @@
     <link rel="icon" type="image/png" href="../favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTÜ UTAT | BTU TRADE SUMMIT: Küresel Pazarlara Ticaret Zirvesi</title>
+    <title>BTÜ UTAT | Zirve Sertifika Sistemi</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- İstemci taraflı PDF üretim kütüphanesi -->
-    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- Güvenilir ve Güncel PDF-Lib CDN Bağlantısı -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     
     <style>
         :root {
@@ -32,7 +32,7 @@
             min-height: 100vh;
         }
 
-        /* Üst Menü / Navigasyon (Ana site ile uyumlu) */
+        /* Üst Menü / Navigasyon (Ana site tasarımıyla birebir uyumlu) */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -216,6 +216,7 @@
         © 2026 BTÜ ULUSLARARASI TİCARET ARAŞTIRMALARI TOPLULUĞU - TÜM HAKLARI SAKLIDIR.
     </footer>
 
+    <!-- Arka Plan Mantığı ve PDF İşleme Motoru -->
     <script>
         const form = document.getElementById('sertifikaFormu');
         const btnGonder = document.getElementById('btnGonder');
@@ -231,7 +232,6 @@
             try {
                 await sertifikaUret(adSoyad);
                 
-                // İndirme bittikten sonra butonu eski haline getir
                 btnGonder.disabled = false;
                 btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
             } catch (err) {
@@ -242,34 +242,48 @@
         });
 
         async function sertifikaUret(isim) {
-            const { PDFDocument, rgb } = PDFLib;
+            // Tarayıcı hafızasındaki kütüphane kontrolünü sağlama alıyoruz
+            const lib = window.PDFLib || PDFLib;
+            if (!lib) {
+                throw new Error("Sertifika oluşturma kütüphanesi yüklenemedi. Lütfen internet bağlantınızı kontrol edip sayfayı yenileyin.");
+            }
 
-            // Görsel yolu: anket klasörünün içindeki assets klasöründe olmalı
+            const { PDFDocument, rgb, StandardFonts } = lib;
+
+            // Görsel yolu (Aynı dizindeki assets klasörü)
             const imageUrl = './assets/sertifika-tasarimi.png';
-            const imageBytes = await fetch(imageUrl).then(res => res.arrayBuffer());
+            const imageBytes = await fetch(imageUrl).then(res => {
+                if (!res.ok) throw new Error("Boş sertifika şablonu (anket/assets/sertifika-tasarimi.png) klasörde bulunamadı!");
+                return res.arrayBuffer();
+            });
 
             const pdfDoc = await PDFDocument.create();
-            const page = pdfDoc.addPage([1123, 794]); // Standart A4 Yatay Boyutu (300 DPI eşdeğeri px)
+            const page = pdfDoc.addPage([1123, 794]); // A4 Yatay Piksel Ölçüsü
 
             const embeddedImage = await pdfDoc.embedPng(imageBytes);
             page.drawImage(embeddedImage, { x: 0, y: 0, width: 1123, height: 794 });
 
-            const helveticaFont = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+            const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-            // Türkçe karakterlerin Helvetica tarafından yutulmaması için temizleme fonksiyonu
+            // Türkçe karakterlerin Helvetica fontu üzerinde bozulmaması için güvenli temizlik
             const temizIsim = isim
                 .replace(/ı/g, 'i').replace(/Ş/g, 'S').replace(/ş/g, 's')
                 .replace(/Ğ/g, 'G').replace(/ğ/g, 'g').replace(/Ç/g, 'C')
                 .replace(/ç/g, 'c').replace(/Ö/g, 'O').replace(/ö/g, 'o')
                 .replace(/Ü/g, 'U').replace(/ü/g, 'u').replace(/İ/g, 'I');
 
-            // İnce Ayar Alanı: x (sağ-sol) ve y (yukarı-aşağı) sayılarını şablonuna göre değiştirebilirsin
+            // Yazı boyutuna göre otomatik ortalama hesaplama mantığı
+            const yaziBoyutu = 38;
+            const yaziGenisligi = temizIsim.length * 18; 
+            const dinamikX = Math.max(100, (1123 - yaziGenisligi) / 2);
+
+            // İsmi şablon üzerine yerleştirme
             page.drawText(temizIsim, {
-                x: 420, 
-                y: 380, 
-                size: 38, 
+                x: dinamikX,               // Otomatik enlemesine ortalar
+                y: 380,                    // Aşağıdan yukarıya yükseklik ayarı (Gerekirse değiştirilebilir)
+                size: yaziBoyutu, 
                 font: helveticaFont,
-                color: rgb(0.06, 0.09, 0.16) // Sitenin kendi rengi olan --dark-navy rengiyle yazar (#0f172a)
+                color: rgb(0.06, 0.09, 0.16) // Kurumsal ana renk kodunuz (--dark-navy)
             });
 
             const pdfBytes = await pdfDoc.save();
