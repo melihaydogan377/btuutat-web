@@ -47,6 +47,21 @@ async function sertifikaUret(isim) {
         color: rgb(0, 0, 0)
     });
 
+    // İsimdeki Türkçe karakterleri sorunsuz basılması için dönüştüren küçük fonksiyon
+const temizIsim = isim
+    .replace(/ı/g, 'i').replace(/Ş/g, 'S').replace(/ş/g, 's')
+    .replace(/Ğ/g, 'G').replace(/ğ/g, 'g').replace(/Ç/g, 'C')
+    .replace(/ç/g, 'c').replace(/Ö/g, 'O').replace(/ö/g, 'o')
+    .replace(/Ü/g, 'U').replace(/ü/g, 'u').replace(/İ/g, 'I');
+
+page.drawText(temizIsim, {
+    x: 400, 
+    y: 380, 
+    size: 36, 
+    font: helveticaFont,
+    color: rgb(0, 0, 0)
+});
+
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], { type: "application/pdf" });
     const link = document.createElement('a');
