@@ -1,28 +1,284 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <link rel="icon" type="image/png" href="../favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTAT Zirve Sertifika Sistemi</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Sadece PDF Üretim Kütüphanesi Yeterli -->
+    <title>BTÜ UTAT | BTU TRADE SUMMIT: Küresel Pazarlara Ticaret Zirvesi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- İstemci taraflı PDF üretim kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    
+    <style>
+        :root {
+            --dark-navy: #0f172a;
+            --utat-blue: #0ea5e9;
+            --soft-blue: #bae6fd;
+            --white: #ffffff;
+            --gray-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--gray-bg); 
+            color: var(--dark-navy); 
+            line-height: 1.7; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Üst Menü / Navigasyon (Ana site ile uyumlu) */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03); width: 100%;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark-navy); }
+        .logo-area img { height: 55px; } 
+        .logo-text-nav { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1; text-transform: uppercase; letter-spacing: 1px; display: flex; flex-direction: column; justify-content: center; }
+        .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 500; font-size: 0.65rem; letter-spacing: 2px; margin-top: 3px; }
+        .back-home { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 0.85rem; transition: var(--transition); opacity: 0.8; display: flex; align-items: center; gap: 8px; }
+        .back-home:hover { color: var(--utat-blue); opacity: 1; }
+
+        /* Form Kart Konsepti */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 5%;
+        }
+
+        .cert-card {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            border: 1px solid var(--border-color);
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: var(--soft-blue);
+            color: var(--utat-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 1.8rem;
+        }
+
+        .cert-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .cert-card p {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: #64748b;
+            font-size: 1rem;
+            margin-bottom: 35px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--dark-navy);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: var(--dark-navy);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--utat-blue);
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+        }
+
+        .download-btn {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--utat-blue);
+            color: var(--white);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            background: var(--dark-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 23, 42, 0.1);
+        }
+
+        .download-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Alt Bilgi */
+        footer {
+            background: var(--dark-navy);
+            color: var(--white);
+            padding: 30px 5%;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 576px) {
+            nav { padding: 1rem 5%; justify-content: center; }
+            .back-home { display: none; }
+            .cert-card { padding: 35px 20px; }
+            .cert-card h2 { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>UTAT Zirve Katılım Sertifikası</h2>
-        <p>Sertifikanızı indirmek için lütfen adınızı ve soyadınızı yazınız.</p>
-        
-        <form id="sertifikaFormu">
-            <div class="form-group">
-                <label for="adSoyad">Ad Soyad (Sertifikada görünecek şekilde):</label>
-                <input type="text" id="adSoyad" required placeholder="Örn: Melih Aydoğan">
+    <!-- Üst Menü -->
+    <nav>
+        <a href="../" class="logo-area">
+            <img src="../logo.png" alt="BTÜ UTAT">
+            <div class="logo-text-nav">ULUSLARARASI TİCARET<span>ARAŞTIRMALARI TOPLULUĞU</span></div>
+        </a>
+        <a href="../" class="back-home"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+    </nav>
+
+    <!-- Merkezdeki Sertifika Kartı -->
+    <div class="main-container">
+        <div class="cert-card">
+            <div class="icon-box">
+                <i class="fas fa-award"></i>
             </div>
-            <button type="submit" id="btnGonder">Sertifikamı İndir</button>
-        </form>
+            <h2>Sertifika Sistemi</h2>
+            <p>"Katılım sertifikanızı anında üretin."</p>
+            
+            <form id="sertifikaFormu">
+                <div class="form-group">
+                    <label for="adSoyad">Adınız Soyadınız</label>
+                    <input type="text" id="adSoyad" required placeholder="Sertifikada yazacağı şekilde giriniz...">
+                </div>
+                <button type="submit" id="btnGonder" class="download-btn">
+                    <i class="fas fa-file-download"></i> Sertifikamı İndir
+                </button>
+            </form>
+        </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Mini Footer -->
+    <footer>
+        © 2026 BTÜ ULUSLARARASI TİCARET ARAŞTIRMALARI TOPLULUĞU - TÜM HAKLARI SAKLIDIR.
+    </footer>
+
+    <script>
+        const form = document.getElementById('sertifikaFormu');
+        const btnGonder = document.getElementById('btnGonder');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            btnGonder.disabled = true;
+            btnGonder.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...';
+
+            const adSoyad = document.getElementById('adSoyad').value.trim();
+
+            try {
+                await sertifikaUret(adSoyad);
+                
+                // İndirme bittikten sonra butonu eski haline getir
+                btnGonder.disabled = false;
+                btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
+            } catch (err) {
+                alert("Sertifika basılırken bir hata oluştu: " + err.message);
+                btnGonder.disabled = false;
+                btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
+            }
+        });
+
+        async function sertifikaUret(isim) {
+            const { PDFDocument, rgb } = PDFLib;
+
+            // Görsel yolu: anket klasörünün içindeki assets klasöründe olmalı
+            const imageUrl = './assets/sertifika-tasarimi.png';
+            const imageBytes = await fetch(imageUrl).then(res => res.arrayBuffer());
+
+            const pdfDoc = await PDFDocument.create();
+            const page = pdfDoc.addPage([1123, 794]); // Standart A4 Yatay Boyutu (300 DPI eşdeğeri px)
+
+            const embeddedImage = await pdfDoc.embedPng(imageBytes);
+            page.drawImage(embeddedImage, { x: 0, y: 0, width: 1123, height: 794 });
+
+            const helveticaFont = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+            // Türkçe karakterlerin Helvetica tarafından yutulmaması için temizleme fonksiyonu
+            const temizIsim = isim
+                .replace(/ı/g, 'i').replace(/Ş/g, 'S').replace(/ş/g, 's')
+                .replace(/Ğ/g, 'G').replace(/ğ/g, 'g').replace(/Ç/g, 'C')
+                .replace(/ç/g, 'c').replace(/Ö/g, 'O').replace(/ö/g, 'o')
+                .replace(/Ü/g, 'U').replace(/ü/g, 'u').replace(/İ/g, 'I');
+
+            // İnce Ayar Alanı: x (sağ-sol) ve y (yukarı-aşağı) sayılarını şablonuna göre değiştirebilirsin
+            page.drawText(temizIsim, {
+                x: 420, 
+                y: 380, 
+                size: 38, 
+                font: helveticaFont,
+                color: rgb(0.06, 0.09, 0.16) // Sitenin kendi rengi olan --dark-navy rengiyle yazar (#0f172a)
+            });
+
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: "application/pdf" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${temizIsim.replace(/\s+/g, '_')}_UTAT_Sertifika.pdf`;
+            link.click();
+        }
+    </script>
 </body>
 </html>
