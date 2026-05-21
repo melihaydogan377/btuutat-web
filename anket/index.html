@@ -3,48 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTAT Zirve Katılım Anketi & Sertifika Sistemi</title>
+    <title>UTAT Zirve Sertifika Sistemi</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Supabase ve PDF-Lib Kütüphaneleri -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Sadece PDF Üretim Kütüphanesi Yeterli -->
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
 
     <div class="container">
-        <h2>UTAT Zirve Katılım Anketi</h2>
-        <p>Sertifikanızı alabilmek için lütfen aşağıdaki formu ve anketi eksiksiz doldurunuz.</p>
+        <h2>UTAT Zirve Katılım Sertifikası</h2>
+        <p>Sertifikanızı indirmek için lütfen adınızı ve soyadınızı yazınız.</p>
         
-        <form id="anketFormu">
+        <form id="sertifikaFormu">
             <div class="form-group">
                 <label for="adSoyad">Ad Soyad (Sertifikada görünecek şekilde):</label>
                 <input type="text" id="adSoyad" required placeholder="Örn: Melih Aydoğan">
             </div>
-
-            <div class="form-group">
-                <label for="eposta">E-posta Adresiniz:</label>
-                <input type="email" id="eposta" required placeholder="ornek@eposta.com">
-            </div>
-
-            <hr>
-
-            <div class="form-group">
-                <label for="soru1">1. Zirvemizin organizasyon kalitesini nasıl buldunuz?</label>
-                <select id="soru1" required>
-                    <option value="">Seçiniz...</option>
-                    <option value="Harika">Harika</option>
-                    <option value="İyi">İyi</option>
-                    <option value="Orta">Orta</option>
-                    <option value="Geliştirilmeli">Geliştirilmeli</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="soru2">2. Etkinlikte en çok beğendiğiniz konuşmacı/oturum hangisi oldu?</label>
-                <input type="text" id="soru2" required placeholder="Fikirlerinizi yazınız...">
-            </div>
-
-            <button type="submit" id="btnGonder">Anketi Tamamla & Sertifikamı İndir</button>
+            <button type="submit" id="btnGonder">Sertifikamı İndir</button>
         </form>
     </div>
 
