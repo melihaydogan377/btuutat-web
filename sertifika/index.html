@@ -8,9 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- PDF-Lib Kütüphanesi Global Bağlantısı -->
-    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    
     <style>
         :root {
             --dark-navy: #0f172a;
@@ -33,7 +30,6 @@
             min-height: 100vh;
         }
 
-        /* Üst Menü / Navigasyon (Ana site tasarımıyla birebir uyumlu) */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -46,7 +42,6 @@
         .back-home { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 0.85rem; transition: var(--transition); opacity: 0.8; display: flex; align-items: center; gap: 8px; }
         .back-home:hover { color: var(--utat-blue); opacity: 1; }
 
-        /* Form Kart Konsepti */
         .main-container {
             flex: 1;
             display: flex;
@@ -171,6 +166,9 @@
             letter-spacing: 0.5px;
         }
 
+        /* Gizli çizim alanı */
+        #canvasDeposu { display: none; }
+
         @media (max-width: 576px) {
             nav { padding: 1rem 5%; justify-content: center; }
             .back-home { display: none; }
@@ -181,7 +179,6 @@
 </head>
 <body>
 
-    <!-- Üst Menü -->
     <nav>
         <a href="../" class="logo-area">
             <img src="../logo.png" alt="BTÜ UTAT">
@@ -190,14 +187,13 @@
         <a href="../" class="back-home"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
     </nav>
 
-    <!-- Merkezdeki Sertifika Kartı -->
     <div class="main-container">
         <div class="cert-card">
             <div class="icon-box">
                 <i class="fas fa-award"></i>
             </div>
             <h2>Sertifika Sistemi</h2>
-            <p>"Katılım sertifikanızı alabilirsiniz."</p>
+            <p>"Katılım sertifikanızı anında üretin."</p>
             
             <form id="sertifikaFormu">
                 <div class="form-group">
@@ -211,88 +207,71 @@
         </div>
     </div>
 
-    <!-- Mini Footer -->
+    <!-- Resmi arka planda işleyeceğimiz gizli tuval -->
+    <canvas id="canvasDeposu"></canvas>
+
     <footer>
         © 2026 BTÜ ULUSLARARASI TİCARET ARAŞTIRMALARI TOPLULUĞU - TÜM HAKLARI SAKLIDIR.
     </footer>
 
-    <!-- Arka Plan Mantığı ve PDF İşleme Motoru -->
     <script>
-        document.getElementById('sertifikaFormu').addEventListener('submit', async (e) => {
+        document.getElementById('sertifikaFormu').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const btnGonder = document.getElementById('btnGonder');
+            const adSoyad = document.getElementById('adSoyad').value.trim();
+            
             btnGonder.disabled = true;
             btnGonder.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...';
 
-            const adSoyad = document.getElementById('adSoyad').value.trim();
+            // 1. Doğrudan tarayıcının kendi resim motorunu tetikliyoruz
+            const img = new Image();
+            img.src = 'sertifika-tasarimi.png'; // index.html ile yan yana duran görsel
 
-            try {
-                // 1. Tarayıcı penceresindeki PDF-Lib varlığını doğrudan kontrol ediyoruz
-                const pdfLibInstance = window.PDFLib;
-                if (!pdfLibInstance) {
-                    throw new Error("Tarayıcı kütüphaneyi yükleyemedi. İnternet bağlantınızı kontrol edip sayfayı yenileyiniz.");
+            img.onload = function() {
+                try {
+                    const canvas = document.getElementById('canvasDeposu');
+                    const ctx = canvas.getContext('2d');
+
+                    // Tuval boyutlarını orijinal şablon resminin boyutuna eşitliyoruz (Netlik bozulmasın diye)
+                    canvas.width = img.naturalWidth || 1123;
+                    canvas.height = img.naturalHeight || 794;
+
+                    // Şablonu tuvale çiz
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                    // Yazı tipi ve stil ayarları (Kütüphanesiz olduğu için TÜRKÇE KARAKTERLER %100 ÇALIŞIR)
+                    ctx.font = 'bold 42px Montserrat, Poppins, Arial, sans-serif';
+                    ctx.fillStyle = '#0f172a'; // Ana sitenin koyu lacivert rengi
+                    ctx.textAlign = 'center';  // Yatayda kusursuz otomatik ortalama
+                    ctx.textBaseline = 'middle';
+
+                    // İsmi tam olarak resmin ortasına yazdırıyoruz
+                    // Not: İsmin yüksekliğini değiştirmek istersen canvas.height / 2 kısmındaki sayıyı oynatabilirsin
+                    ctx.fillText(adSoyad, canvas.width / 2, canvas.height / 2 + 10);
+
+                    // 2. Tarayıcıya dosyayı indirtme işlemi
+                    const link = document.createElement('a');
+                    link.download = adSoyad.replace(/\s+/g, '_') + '_UTAT_Sertifika.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+
+                    // Butonu sıfırla
+                    btnGonder.disabled = false;
+                    btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
+
+                } catch (err) {
+                    alert("Yerel tarayıcı hatası: " + err.message + "\nLütfen görsel adının sertifika-tasarimi.png olduğunu ve index.html ile yan yana durduğunu kontrol edin.");
+                    btnGonder.disabled = false;
+                    btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
                 }
+            };
 
-                // 2. Görseli kontrol ederek çekiyoruz (Doğrudan index.html ile aynı klasördeki resmi arar)
-                const imageUrl = 'sertifika-tasarimi.png';
-                const imageResponse = await fetch(imageUrl);
-                
-                if (!imageResponse.ok) {
-                    throw new Error("Sertifika görseli (anket/sertifika-tasarimi.png) index.html dosyasıyla aynı klasörde bulunamadı! Lütfen görsel adını kontrol edin.");
-                }
-                
-                const imageBytes = await imageResponse.arrayBuffer();
-
-                // 3. PDF Dokümanını kütüphane nesnesi üzerinden türetiyoruz
-                const pdfDoc = await pdfLibInstance.PDFDocument.create();
-                const page = pdfDoc.addPage([1123, 794]); // A4 Yatay Standart Boyut
-
-                const embeddedImage = await pdfDoc.embedPng(imageBytes);
-                page.drawImage(embeddedImage, { x: 0, y: 0, width: 1123, height: 794 });
-
-                // 4. Standart Fontu Çağırıyoruz
-                const helveticaFont = await pdfDoc.embedFont(pdfLibInstance.StandardFonts.HelveticaBold);
-
-                // 5. Türkçe Karakterleri Normalize Ediyoruz
-                const temizIsim = adSoyad
-                    .replace(/ı/g, 'i').replace(/Ş/g, 'S').replace(/ş/g, 's')
-                    .replace(/Ğ/g, 'G').replace(/ğ/g, 'g').replace(/Ç/g, 'C')
-                    .replace(/ç/g, 'c').replace(/Ö/g, 'O').replace(/ö/g, 'o')
-                    .replace(/Ü/g, 'U').replace(/ü/g, 'u').replace(/İ/g, 'I');
-
-                // 6. Dinamik Ortalamayı Hesaplıyoruz
-                const yaziBoyutu = 38;
-                const yaziGenisligi = temizIsim.length * 18; 
-                const dinamikX = Math.max(100, (1123 - yaziGenisligi) / 2);
-
-                // 7. İsmi Basıyoruz
-                page.drawText(temizIsim, {
-                    x: dinamikX, 
-                    y: 380, 
-                    size: yaziBoyutu, 
-                    font: helveticaFont,
-                    color: pdfLibInstance.rgb(0.06, 0.09, 0.16) // --dark-navy rengi (#0f172a)
-                });
-
-                // 8. İndirme İşlemini Başlatıyoruz
-                const pdfBytes = await pdfDoc.save();
-                const blob = new Blob([pdfBytes], { type: "application/pdf" });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = `${temizIsim.replace(/\s+/g, '_')}_UTAT_Sertifika.pdf`;
-                link.click();
-
-                // Butonu eski haline getir
+            img.onerror = function() {
+                alert("Sertifika şablon resmi (sertifika-tasarimi.png) bulunamadı veya yüklenemedi! Lütfen dosya adını kontrol edin.");
                 btnGonder.disabled = false;
                 btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
-
-            } catch (err) {
-                // Hatanın tam kaynağını ekrana basıyoruz
-                alert("Hata Detayı: " + err.message);
-                btnGonder.disabled = false;
-                btnGonder.innerHTML = '<i class="fas fa-file-download"></i> Sertifikamı İndir';
-            }
+            };
         });
     </script>
 </body>
