@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetim Kurulu | BTÜ UTAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Lora:ital,wght@0,400;0,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --dark-navy: #0f172a;
+            --utat-blue: #0ea5e9;
+            --soft-blue: #bae6fd;
+            --white: #ffffff;
+            --gray-bg: #f8fafc;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--white); color: var(--dark-navy); line-height: 1.7; overflow-x: hidden; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { animation: fadeInUp 0.8s ease forwards; }
+
+        /* NAVBAR STYLES (Ana sayfadan birebir alındı) */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark-navy); }
+        .logo-area img { height: 55px; } 
+        .logo-text-nav { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1; text-transform: uppercase; letter-spacing: 1px; display: flex; flex-direction: column; justify-content: center; }
+        .logo-text-nav span { display: block; color: var(--utat-blue); font-weight: 500; font-size: 0.65rem; letter-spacing: 2px; margin-top: 3px; }
+
+        .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 600; font-size: 0.85rem; transition: var(--transition); opacity: 0.8; }
+        .nav-links a:hover { color: var(--utat-blue); opacity: 1; }
+        .nav-join-btn { background: var(--utat-blue); color: white !important; padding: 8px 20px; border-radius: 50px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: var(--white);
+            min-width: 170px; box-shadow: 0px 8px 20px 0px rgba(0,0,0,0.08);
+            border-radius: 12px; z-index: 1; top: 150%; left: 50%;
+            transform: translateX(-50%); overflow: hidden; border: 1px solid rgba(0,0,0,0.05);
+        }
+        .dropdown-content a {
+            color: var(--dark-navy) !important; padding: 12px 16px; text-decoration: none;
+            display: block; text-align: center; font-size: 0.8rem !important;
+            transition: var(--transition); border-bottom: 1px solid rgba(0,0,0,0.03); opacity: 1;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--gray-bg); color: var(--utat-blue) !important; font-weight: 700; }
+        .dropdown:hover .dropdown-content { display: block; animation: fadeInUp 0.3s ease; top: 100%; }
+
+        /* YÖNETİM KURULU ÖZEL STİLLERİ (Eski ana sayfadan geri getirildi) */
+        .page-header {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.95) 100%);
+            padding: 100px 10% 60px;
+            text-align: center;
+            color: white;
+        }
+        .page-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3.5rem; letter-spacing: -1px; }
+
+        .team-section { padding: 80px 8%; text-align: center; background: var(--gray-bg); }
+        .unit-container { margin-bottom: 100px; }
+        .unit-header { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; color: white; background: var(--dark-navy); display: inline-block; padding: 12px 45px; border-radius: 50px; margin-bottom: 50px; letter-spacing: 2px; text-transform: uppercase; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 40px; justify-content: center; }
+        
+        .member-card { 
+            background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); 
+            border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transform: translate3d(0, 0, 0); 
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+        .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
+        .p-img { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 25px; border: 4px solid var(--utat-blue); padding: 5px; }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); margin-bottom: 5px; }
+        .member-card p { font-size: 0.8rem; color: var(--utat-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        footer { background: var(--dark-navy); color: white; padding: 80px 10% 40px; text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .social-icons a { color: white; font-size: 1.8rem; transition: var(--transition); }
+        .social-icons a:hover { color: var(--utat-blue); transform: translateY(-5px); }
+
+        @media (max-width: 992px) {
+            nav { padding: 1rem 5%; justify-content: center; }
+            .nav-links { display: none !important; }
+            .page-header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../" class="logo-area">
+            <img src="../logo.png" alt="BTÜ UTAT">
+            <div class="logo-text-nav">ULUSLARARASI TİCARET<span>ARAŞTIRMALARI TOPLULUĞU</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../#vizyon">Vizyon</a></li>
+            <li><a href="../#haberler">Haberler</a></li>
+            <li class="dropdown">
+                <a href="#" style="cursor: pointer; color: var(--utat-blue);">Ekibimiz <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
+                <div class="dropdown-content">
+                    <a href="../onursal.uyeler/">Onursal Üyeler</a>
+                    <a href="#">2025/2026 Ekibi</a>
+                </div>
+            </li>
+            <li><a href="../#iletisim">İletişim</a></li>
+            <li><a href="https://forms.gle/68EHq6hxJV79EMTL7" target="_blank" class="nav-join-btn">Üye Ol</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-header reveal">
+        <h1>2025/2026 Yönetim Kurulu</h1>
+    </div>
+
+    <section id="ekip" class="team-section reveal">
+        
+        <div class="unit-container">
+            <div class="unit-header">Topluluk Başkanı</div>
+            <div style="max-width: 320px; margin: 0 auto;">
+                <div class="member-card">
+                    <div class="p-img"><img src="../melih.png" alt="Melih AYDOĞAN" loading="lazy"></div>
+                    <h3>Melih AYDOĞAN</h3>
+                    <p>KURUCU BAŞKAN</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">Organizasyon Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="../yunus.png" loading="lazy"></div><h3>Yunus Emre KATAR</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="../betul.png" loading="lazy"></div><h3>Betül AKTEPE</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="../mehmet.png" loading="lazy"></div><h3>Mehmet AKDOĞAN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="../sude.png" loading="lazy"></div><h3>Sude GENÇ</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="../sinem.png" loading="lazy"></div><h3>Sinem AKYILDIZ</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">Dış İlişkiler Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="../ferhat.png" loading="lazy"></div><h3>Ferhat ÖMEROĞLU</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="../diana.png" loading="lazy"></div><h3>Diana SECHERLI</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="../eymen.png" loading="lazy"></div><h3>Eymen KURT</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">Basın ve Medya Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="../helen.png" loading="lazy"></div><h3>Helen YILMAZ</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="../izem.png" loading="lazy"></div><h3>İzem ÇETİN</h3><p>Birim Üyesi</p></div>
+                <div class="member-card"><div class="p-img"><img src="../amir.png" loading="lazy"></div><h3>Amirzhan KUNAPİYA</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+
+        <div class="unit-container">
+            <div class="unit-header">Sponsorluk Birimi</div>
+            <div class="team-grid">
+                <div class="member-card"><div class="p-img"><img src="../rumeysa.png" loading="lazy"></div><h3>Rümeysa TEMÜR</h3><p>Birim Başkanı</p></div>
+                <div class="member-card"><div class="p-img"><img src="../fadime.jpg" loading="lazy"></div><h3>Fadime DEMİR</h3><p>Birim Üyesi</p></div>
+                 <div class="member-card"><div class="p-img"><img src="../yaren.png" loading="lazy"></div><h3>Yaren TUNCER</h3><p>Birim Üyesi</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="iletisim">
+        <h2 style="font-family: 'Montserrat'; margin-bottom: 30px; letter-spacing: 2px;">BTÜ UTAT</h2>
+        <div class="social-icons">
+            <a href="https://linkedin.com/company/btuutat" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/btuutat" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="margin-bottom: 10px; opacity: 0.5;">Daha fazla bilgi için iletişime geçin:</p>
+        <a href="mailto:btuutat@gmail.com" style="color: var(--soft-blue); text-decoration: none; font-weight: 700;">btuutat@gmail.com</a>
+        <div style="margin-top: 50px; font-size: 0.8rem; opacity: 0.3; letter-spacing: 1px;">© 2026 BTÜ ULUSLARARASI TİCARET ARAŞTIRMALARI TOPLULUĞU - TÜM HAKLARI SAKLIDIR.</div>
+    </footer>
+
+</body>
+</html>
