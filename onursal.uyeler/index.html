@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Onursal Üyeler | BTÜ UTAT</title>
@@ -13,7 +13,7 @@
             --dark-navy: #0f172a;
             --utat-blue: #0ea5e9;
             --soft-blue: #bae6fd;
-            --gold: #d4af37; /* Onursal üyelere özel premium renk */
+            --gold: #d4af37;
             --white: #ffffff;
             --gray-bg: #f8fafc;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -26,7 +26,7 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { animation: fadeInUp 0.8s ease forwards; }
 
-        /* NAVBAR STİLLERİ (Ana sayfa ile aynı) */
+        /* NAVBAR STİLLERİ */
         nav { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0.8rem 8%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -52,7 +52,7 @@
         .sub-header { 
             height: 40vh; display: flex; flex-direction: column; justify-content: center; 
             align-items: center; text-align: center; padding: 0 10%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.85) 100%), url('kapak.png');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.85) 100%), url('../kapak.png');
             background-size: cover; background-position: center; color: white;
         }
         .sub-header h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
@@ -121,19 +121,19 @@
 <body>
 
     <nav>
-        <a href="index.html" class="logo-area">
-            <img src="logo.png" alt="BTÜ UTAT">
+        <a href="../" class="logo-area">
+            <img src="../logo.png" alt="BTÜ UTAT">
             <div class="logo-text-nav">ULUSLARARASI TİCARET<span>ARAŞTIRMALARI TOPLULUĞU</span></div>
         </a>
         <ul class="nav-links">
-            <!-- Linkler ana sayfaya dönecek şekilde ayarlandı -->
-            <li><a href="index.html#vizyon">Vizyon</a></li>
-            <li><a href="index.html#haberler">Haberler</a></li>
+            <!-- Linkler ana sayfaya dönecek şekilde ../ ile güncellendi -->
+            <li><a href="../#vizyon">Vizyon</a></li>
+            <li><a href="../#haberler">Haberler</a></li>
             <li class="dropdown">
-                <a href="index.html#ekip" class="dropbtn">Ekibimiz <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
+                <a href="#" class="dropbtn" style="color: var(--utat-blue);">Ekibimiz <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <div class="dropdown-content">
-                    <a href="onursal-uyeler.html">Onursal Üyeler</a>
-                    <a href="index.html#ekip-2025">2025/2026 Ekibi</a>
+                    <a href="#">Onursal Üyeler</a>
+                    <a href="../yonetim.kurulu/">2025/2026 Ekibi</a>
                 </div>
             </li>
             <li><a href="#iletisim">İletişim</a></li>
@@ -153,13 +153,13 @@
         <!-- KURUCU BAŞKAN KARTI -->
         <div class="founder-card">
             <div class="founder-img-wrapper">
-                <img src="melih.png" alt="Melih AYDOĞAN" loading="lazy">
+                <img src="../melih.png" alt="Melih AYDOĞAN" loading="lazy">
             </div>
             <div class="founder-info">
                 <h2>Melih AYDOĞAN</h2>
                 <h4>Kurucu Başkan / Onursal Üye</h4>
                 <p>
-                    Bursa Teknik Üniversitesi Uluslararası Ticaret ve Lojistik bölümü 4. sınıf öğrencisi olan Melih Aydoğan, Uluslararası Ticaret Araştırmaları Topluluğu'nun temellerini atarak ilk başkanlık görevini üstlenmiştir. Görev süresi boyunca BTU Trade Summit gibi küresel vizyonlu ve sektörel etki yaratan etkinliklerin hayata geçirilmesine öncülük etmiştir. 
+                    Bursa Teknik Üniversitesi Uluslararası Ticaret ve Lojistik bölümü 3. sınıf öğrencisi olan Melih Aydoğan, Uluslararası Ticaret Araştırmaları Topluluğu'nun temellerini atarak ilk başkanlık görevini üstlenmiştir. Görev süresi boyunca BTU Trade Summit gibi küresel vizyonlu ve sektörel etki yaratan etkinliklerin hayata geçirilmesine öncülük etmiştir. 
                 </p>
                 <p>
                     Bugün itibarıyla UTAT ailesinin Onursal Üyesi olarak, topluluğun vizyonuna vizyon katmaya ve profesyonel ağın gelişimine ilham vermeye devam etmektedir.
@@ -170,8 +170,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- İleride eklenebilecek diğer onursal üyeler için buraya aynı kart yapısı kopyalanabilir -->
 
     </section>
 
