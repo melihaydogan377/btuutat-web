@@ -1,9 +1,7 @@
 backend:
-  backend:
   name: github
   repo: KULLANICI_ADI/REPO_ADI # Örn: melih/btuutat-web
-  branch: main
-  base_url: https://decap-cms-oauth-provider.vercel.app # OAuth bridge adresi
+  branch: main # veya master
 
 media_folder: "public/uploads" # Yüklenen resimlerin kaydedileceği yer
 public_folder: "/uploads" # Resimlerin sitede görüneceği URL yolu
