@@ -99,7 +99,6 @@
         .news-content h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 10px; }
         .read-more-btn { color: var(--utat-blue); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* VİZYON KARTLARI İÇİN MEMBER CARD STİLLERİ KORUNDU */
         .member-card { 
             background: white; padding: 40px 20px; border-radius: 25px; transition: var(--transition); 
             border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
@@ -110,7 +109,6 @@
         .member-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: var(--utat-blue); }
         .member-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark-navy); margin-bottom: 5px; }
 
-        /* YENİ EKLENEN YÖNLENDİRME BUTONLARI STİLLERİ */
         .team-redirect-container {
             display: flex;
             justify-content: center;
@@ -131,7 +129,7 @@
         }
         .btn-honorary {
             background-color: var(--white);
-            color: #d4af37; /* Altın Rengi */
+            color: #d4af37;
             border-color: #d4af37;
         }
         .btn-honorary:hover {
@@ -150,6 +148,74 @@
             border-color: var(--dark-navy);
             box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
             transform: translateY(-3px);
+        }
+
+        /* İŞ BİRLİKLERİ AKAN ŞERİT STİLLERİ */
+        .partners-marquee-wrapper {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .partners-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+            letter-spacing: 3px;
+            opacity: 0.5;
+            margin-bottom: 30px;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            /* Kenarların yumuşakça silikleşmesi için maske */
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: max-content;
+            /* 30s değeri hızı belirler (Sayı büyüdükçe daha yavaş akar) */
+            animation: marqueeSmooth 30s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused; /* Mouse ile üzerine gelindiğinde akış durur */
+        }
+
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            height: 60px;
+            filter: grayscale(100%); /* Kurumsal durması için varsayılan siyah-beyaz */
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%); /* Üzerine gelince kendi orijinal rengini alır */
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes marqueeSmooth {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .join-us-panel { background: var(--dark-navy); color: white; padding: 60px 10%; margin: 80px 8%; border-radius: 30px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
@@ -187,7 +253,6 @@
         <ul class="nav-links">
             <li><a href="#vizyon">Vizyon</a></li>
             <li><a href="#haberler">Haberler</a></li>
-            <!-- GÜNCELLENEN EKİBİMİZ AÇILIR MENÜSÜ -->
             <li class="dropdown">
                 <a href="#" style="cursor: pointer;">Ekibimiz <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
                 <div class="dropdown-content">
@@ -351,10 +416,31 @@
             <button class="scroll-btn btn-right" onclick="scrollNews(350)"><i class="fas fa-chevron-right"></i></button>
         </div>
         
-        <!-- YENİ EKLENEN YÖNLENDİRME BUTONLARI -->
         <div class="team-redirect-container reveal">
             <a href="./onursal.uyeler/" class="team-redirect-btn btn-honorary">Onursal Üyeler</a>
             <a href="./25_26_yonetımkurulu/" class="team-redirect-btn btn-team">2025/2026 Ekibi</a>
+        </div>
+        
+        <!-- YENİ EKLENEN İŞ BİRLİKLERİMİZ AKAN ŞERİT -->
+        <div class="partners-marquee-wrapper reveal">
+            <p class="partners-title">İŞ BİRLİKLERİMİZ & PAYDAŞLARIMIZ</p>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <!-- 1. GRUP LOGOLAR -->
+                    <div class="partner-logo"><img src="sponsor1.png" alt="İş Birliği 1"></div>
+                    <div class="partner-logo"><img src="sponsor2.png" alt="İş Birliği 2"></div>
+                    <div class="partner-logo"><img src="sponsor3.png" alt="İş Birliği 3"></div>
+                    <div class="partner-logo"><img src="sponsor4.png" alt="İş Birliği 4"></div>
+                    <div class="partner-logo"><img src="sponsor5.png" alt="İş Birliği 5"></div>
+
+                    <!-- KESİNTİSİZ AKIŞ İÇİN AYNILARININ KOPYASI -->
+                    <div class="partner-logo"><img src="sponsor1.png" alt="İş Birliği 1"></div>
+                    <div class="partner-logo"><img src="sponsor2.png" alt="İş Birliği 2"></div>
+                    <div class="partner-logo"><img src="sponsor3.png" alt="İş Birliği 3"></div>
+                    <div class="partner-logo"><img src="sponsor4.png" alt="İş Birliği 4"></div>
+                    <div class="partner-logo"><img src="sponsor5.png" alt="İş Birliği 5"></div>
+                </div>
+            </div>
         </div>
         
     </section>
