@@ -1,15 +1,15 @@
 backend:
   name: github
-  repo: KULLANICI_ADI/REPO_ADI # Örn: melih/btuutat-web
-  branch: main # veya master
+  repo: btu-tat/btuutat-web # GitHub kullanıcı adın / repo adın
+  branch: main # veya master (hangisini kullanıyorsan)
 
-media_folder: "public/uploads" # Yüklenen resimlerin kaydedileceği yer
-public_folder: "/uploads" # Resimlerin sitede görüneceği URL yolu
+media_folder: "uploads" # Resimlerin yükleneceği klasör
+public_folder: "/uploads"
 
 collections:
   - name: "news"
     label: "Haberler & Duyurular"
-    folder: "content/news" # Haberlerin .md olarak kaydedileceği klasör
+    folder: "content/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -18,4 +18,4 @@ collections:
       - { label: "Özet Metin", name: "summary", widget: "text" }
       - { label: "Kapak Görseli", name: "image", widget: "image", required: false }
       - { label: "Kategori", name: "category", widget: "select", options: ["Etkinlik", "Duyuru", "Başarılarımız", "Genel"] }
-      - { label: "Haber Detayı (Markdown)", name: "body", widget: "markdown" }
+      - { label: "Haber Detayı", name: "body", widget: "markdown" }
