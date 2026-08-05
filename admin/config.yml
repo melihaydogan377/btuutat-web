@@ -1,10 +1,9 @@
 backend:
   name: github
-  repo: melihaydogan377/btuutat-web # Örn: melih/btuutat-web
-  branch: main # Repository'nin ana dalı (main veya master)
-  auth_type: implicit
+  repo: melihaydogan377/btuutat-web # Buraya kullanıcı adı/repo adını yaz (Örn: btu-tat/btuutat-web)
+  branch: main # veya master
 
-media_folder: "uploads" # Resimlerin yükleneceği klasör
+media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
