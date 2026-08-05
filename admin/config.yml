@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: btu-tat/btuutat-web # GitHub kullanıcı adın / repo adın
+  repo: btuutat-web # GitHub kullanıcı adın / repo adın
   branch: main # veya master (hangisini kullanıyorsan)
 
 media_folder: "uploads" # Resimlerin yükleneceği klasör
