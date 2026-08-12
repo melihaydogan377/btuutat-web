@@ -3,60 +3,60 @@
   
   <!-- Ana Sayfa -->
   <url>
-    <loc>https://www.btuutat.com.tr/</loc>
+    <loc>https://btuutat.com.tr/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>1.00</priority>
   </url>
   
   <!-- Ekip Sayfaları -->
   <url>
-    <loc>https://www.btuutat.com.tr/onursal.uyeler/</loc>
+    <loc>https://btuutat.com.tr/onursal.uyeler/</loc>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/25_26_yonetımkurulu/</loc>
+    <loc>https://btuutat.com.tr/25_26_yonetımkurulu/</loc>
     <priority>0.80</priority>
   </url>
 
   <!-- Etkinlikler ve Haber Sayfaları -->
   <url>
-    <loc>https://www.btuutat.com.tr/btutradesummıt/</loc>
+    <loc>https://btuutat.com.tr/btutradesummıt/</loc>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/proje.egitimi/</loc>
+    <loc>https://btuutat.com.tr/proje.egitimi/</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/linkedin.egitimi/</loc>
+    <loc>https://btuutat.com.tr/linkedin.egitimi/</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/speaking.club/</loc>
+    <loc>https://btuutat.com.tr/speaking.club/</loc>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/speaking.workshop/</loc>
+    <loc>https://btuutat.com.tr/speaking.workshop/</loc>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/vision.board/</loc>
+    <loc>https://btuutat.com.tr/vision.board/</loc>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/fakulte.dekanı.ziyaret/</loc>
+    <loc>https://btuutat.com.tr/fakulte.dekanı.ziyaret/</loc>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/bolum.baskanı.ziyaret/</loc>
+    <loc>https://btuutat.com.tr/bolum.baskanı.ziyaret/</loc>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/paint.ball/</loc>
+    <loc>https://btuutat.com.tr/paint.ball/</loc>
     <priority>0.50</priority>
   </url>
   <url>
-    <loc>https://www.btuutat.com.tr/buz.pateni/</loc>
+    <loc>https://btuutat.com.tr/buz.pateni/</loc>
     <priority>0.50</priority>
   </url>
 
