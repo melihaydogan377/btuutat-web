@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTÜ UTAT Yeni Döneme Enerjik Bir Başlangıç Yaptı! | BTÜ UTAT</title>
     
-    <meta name="description" content="BTÜ UTAT yeni döneme harika bir tanışma etkinliğiyle başladı! Yönetim kurulunu tanıttı, yarışan gruplar ve interaktif oyunlarla unutulmaz anlar yaşandı.">
+    <meta name="description" content="BTÜ UTAT yeni döneme harika bir tanışma etkinliğiyle başladı! Yönetim kurulunu tanıttı, yarışan 5 grup ve interaktif oyunlarla unutulmaz anlar yaşandı.">
     
     <meta property="og:type" content="article">
     <meta property="og:title" content="BTÜ UTAT Yeni Döneme Enerjik Bir Başlangıç Yaptı!">
-    <meta property="og:description" content="Yeni dönem vizyonu ve yönetim kurulunun tanıtıldığı etkinlikte, eğlenceli ve interaktif oyunlarla unutulmaz anılar biriktirildi.">
+    <meta property="og:description" content="Yeni dönem vizyonu ve yönetim kurulunun tanıtıldığı etkinlikte, 5 farklı grubun yarıştığı eğlenceli oyunlarla unutulmaz anılar biriktirildi.">
     <meta property="og:image" content="https://www.btuutat.com.tr/haberler/tanisma_etkinligi_yk.jpg"> 
     <meta property="og:url" content="https://www.btuutat.com.tr/haberler/tanisma-etkinligi">
 
@@ -69,19 +69,32 @@
             width: 100%; 
             height: auto;
             border-radius: 2px; 
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
-        /* GRUP FOTOĞRAFLARI İÇİN 2x2 IZGARA (GRID) DÜZENİ */
+        /* GRUP FOTOĞRAFLARI İÇİN DÜZEN */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin: 25px 0 35px 0;
+            margin: 25px 0 15px 0;
         }
         .photo-grid img {
             width: 100%;
             height: 220px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #eee;
+        }
+        
+        /* 5. GRUP FOTOĞRAFI İÇİN TEK KARTLIK ÖZEL ALAN */
+        .single-photo {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .single-photo img {
+            width: 100%;
+            max-height: 400px;
             object-fit: cover;
             border-radius: 2px;
             border: 1px solid #eee;
@@ -93,12 +106,11 @@
         .article-content ul { margin-bottom: 20px; padding-left: 20px; }
         .article-content li { margin-bottom: 10px; }
 
-        /* GÖRSEL ALTI AÇIKLAMA YAZISI */
         .img-caption {
             font-size: 0.85rem;
             color: var(--text-gray);
             text-align: center;
-            margin-top: -20px;
+            margin-top: 5px;
             margin-bottom: 30px;
             font-style: italic;
         }
@@ -131,7 +143,7 @@
         <div class="meta-info">
             <span class="category">ETKİNLİK</span>
             <span>|</span>
-            <span>9 Ekim 2026</span>
+            <span>7 Ekim 2026</span>
         </div>
         
         <h1>BTÜ UTAT Yeni Döneme Enerjik Bir Başlangıç Yaptı!</h1>
@@ -145,19 +157,24 @@
                 <strong>BURSA -</strong> Kampüste birlik ve beraberlik ruhunu pekiştirmeyi hedefleyen topluluğumuz, yeni döneme son derece yüksek bir tempoyla damga vurdu. Etkinlik kapsamında topluluğun vizyonu paylaşıldı, davetliler ve yeni üyeler birbirlerini tanıma fırsatı buldu.
             </p>
 
-            <p><strong>Yarışan Gruplarla Tatlı Rekabet ve Yüksek Enerji</strong></p>
+            <p><strong>5 Farklı Grupla Tatlı Rekabet ve Yüksek Enerji</strong></p>
             <p>
-                Katılımcıların kendilerini tanıttığı interaktif açılış bölümünün ardından eğlenceli ve hareketli oyun akışına geçildi. Oluşturulan yarışma grupları, tatlı bir rekabet ve yüksek enerjiyle oyunlarda kıyasıya mücadele etti. Ekip ruhunu pekiştiren bu oyunlar sayesinde tüm üyeler kısa sürede kaynaşarak harika bir sinerji yakaladı.
+                Katılımcıların kendilerini tanıttığı interaktif açılış bölümünün ardından eğlenceli ve hareketli oyun akışına geçildi. Oluşturulan 5 ayrı yarışma grubu, tatlı bir rekabet ve yüksek enerjiyle oyunlarda kıyasıya mücadele etti. Ekip ruhunu pekiştiren bu oyunlar sayesinde tüm üyeler kısa sürede kaynaşarak harika bir sinerji yakaladı.
             </p>
 
-            <!-- 4 TANE YARIŞAN GRUP FOTOĞRAFI IZGARASI -->
+            <!-- İLK 4 GRUP FOTOĞRAFI IZGARASI -->
             <div class="photo-grid">
                 <img src="grup1.jpg" alt="Yarışan Grup 1">
                 <img src="grup2.jpg" alt="Yarışan Grup 2">
                 <img src="grup3.jpg" alt="Yarışan Grup 3">
                 <img src="grup4.jpg" alt="Yarışan Grup 4">
             </div>
-            <p class="img-caption">İnteraktif oyun akışımızda kıyasıya yarışan ve enerjileriyle geceye renk katan ekiplerimiz.</p>
+            
+            <!-- 5. GRUP FOTOĞRAFI -->
+            <div class="single-photo">
+                <img src="grup5.jpg" alt="Yarışan Grup 5">
+            </div>
+            <p class="img-caption">İnteraktif oyun akışımızda kıyasıya yarışan 5 ekibimiz ve geceye damga vuran enerjileri.</p>
 
             <p><strong>"Geleceğe Birlikte Yön Veriyoruz"</strong></p>
             <p>
